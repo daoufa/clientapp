@@ -33,7 +33,7 @@ discriminatorType = DiscriminatorType.STRING,length = 2 )
 public abstract class Compte {
 	
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long numCompte;
+	private Long numCompte;
 	private Date dateCreation;
 	private double solde;
 	@ManyToOne
@@ -47,7 +47,7 @@ public abstract class Compte {
 	
 	
 	
-	public Compte(long numCompte, Date dateCreation, double solde, Client client) {
+	public Compte(Long numCompte, Date dateCreation, double solde, Client client) {
 		super();
 		this.numCompte = numCompte;
 		this.dateCreation = dateCreation;

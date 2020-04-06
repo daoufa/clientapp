@@ -28,7 +28,7 @@ discriminatorType = DiscriminatorType.STRING,length = 2)
 public abstract class Operation {
 	
 	@Id @GeneratedValue
-	private long numero;
+	private Long numero;
 	private Date dateOperation;
 	private double montant;
 	@ManyToOne
