@@ -19,8 +19,9 @@ public class RechargeTelephone extends Operation {
 	
 	
 	
-	public RechargeTelephone(long numero, Date dateOperation, double montant, Compte compte) {
-		super(numero, dateOperation, montant, compte);
+	public RechargeTelephone( double montant, Compte compte,String numTel) {
+		super( montant, compte);
+		this.numTel=numTel;
 		// TODO Auto-generated constructor stub
 	}
 

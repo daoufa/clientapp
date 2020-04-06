@@ -1,5 +1,6 @@
 package com.ebanking.model;
 
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
 
@@ -30,7 +31,7 @@ import lombok.NoArgsConstructor;
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "TYPE_CPTE",
 discriminatorType = DiscriminatorType.STRING,length = 2 )
-public abstract class Compte {
+public abstract class Compte implements Serializable {
 	
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long numCompte;

@@ -27,6 +27,7 @@ import lombok.NoArgsConstructor;
 discriminatorType = DiscriminatorType.STRING,length = 2)
 public abstract class Operation {
 	
+
 	@Id @GeneratedValue
 	private Long numero;
 	private Date dateOperation;
@@ -34,6 +35,14 @@ public abstract class Operation {
 	@ManyToOne
 	@JoinColumn(name = "NUM_CPTE")
 	private Compte compte;
+	
+	
+	public Operation(double montant, Compte compte) {
+		super();
+		this.dateOperation = new Date();
+		this.montant = montant;
+		this.compte = compte;
+	}
 	
 	
 	
