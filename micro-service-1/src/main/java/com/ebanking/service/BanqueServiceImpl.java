@@ -18,7 +18,7 @@ import com.ebanking.repository.OperationRepository;
 
 @Service
 @Transactional
-public class banqueMetierImpl implements IBanqueService {
+public class BanqueServiceImpl implements IBanqueService {
 
 	@Autowired
 	private CompteRepository compteRepository;
