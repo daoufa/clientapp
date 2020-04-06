@@ -10,9 +10,11 @@ import javax.persistence.InheritanceType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 import net.bytebuddy.dynamic.loading.ClassReloadingStrategy.Strategy;
 
 @Entity
+@ToString
 @AllArgsConstructor
 @NoArgsConstructor
 @Data

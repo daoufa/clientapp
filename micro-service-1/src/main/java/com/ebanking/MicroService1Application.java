@@ -41,7 +41,7 @@ public class MicroService1Application implements CommandLineRunner{
 		Compte compte2=iBanqueService.consulterCompte(2l);
 		System.out.println(compte);
 		iBanqueService.virement(compte.getNumCompte(),compte2.getNumCompte(), 12.0);
-		
+		iBanqueService.rechargeTelephone(compte.getNumCompte(), "0632302864", 20.0);
 	}
 
 }

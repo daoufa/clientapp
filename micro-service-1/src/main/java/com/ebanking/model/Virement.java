@@ -8,10 +8,14 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
+import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Entity
+@ToString
 @NoArgsConstructor
+@AllArgsConstructor
 @DiscriminatorValue("V")
 public class Virement extends Operation {
 	

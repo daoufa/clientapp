@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.ebanking.model.Compte;
 import com.ebanking.model.CompteCourant;
 import com.ebanking.model.Operation;
+import com.ebanking.model.RechargeTelephone;
 import com.ebanking.model.Virement;
 import com.ebanking.repository.CompteRepository;
 import com.ebanking.repository.OperationRepository;
@@ -85,6 +86,8 @@ public class banqueMetierImpl implements IBanqueService {
 	@Override
 	public void rechargeTelephone(Long numCpte, String numTel,double montant) {
 		retirer(numCpte, montant);
+		Compte compte=consulterCompte(numCpte);
+		OperationRepository.save(new RechargeTelephone(montant, compte, numTel));
 		//TODO:comment envoyer une recharge?
 	}
 
