@@ -1,5 +1,6 @@
 package com.ebanking.model;
 
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
 import lombok.AllArgsConstructor;
@@ -11,6 +12,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@DiscriminatorValue("CE")
 public class CompteEpargne extends Compte {
 	
 	private double tauxInterets;

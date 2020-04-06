@@ -1,5 +1,6 @@
 package com.ebanking.model;
 
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
@@ -12,7 +13,7 @@ import net.bytebuddy.dynamic.loading.ClassReloadingStrategy.Strategy;
 @AllArgsConstructor
 @NoArgsConstructor
 
-@Inheritance/*(strategy = InheritanceType.)*/
+@DiscriminatorValue("CC")
 public class CompteCourant extends Compte {
 	
 	private double decouvert;

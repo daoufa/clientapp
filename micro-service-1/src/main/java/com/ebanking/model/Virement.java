@@ -2,12 +2,14 @@ package com.ebanking.model;
 
 import java.util.Date;
 
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
 import lombok.NoArgsConstructor;
 
 @Entity
 @NoArgsConstructor
+@DiscriminatorValue("V")
 public class Virement extends Operation {
 	
 	

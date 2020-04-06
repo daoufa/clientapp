@@ -2,6 +2,8 @@ package com.ebanking.model;
 
 import java.util.Date;
 
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
 import lombok.AllArgsConstructor;
@@ -10,7 +12,7 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @AllArgsConstructor
-
+@DiscriminatorValue("R")
 public class RechargeTelephone extends Operation {
 	
 	private String numTel;
