@@ -11,7 +11,7 @@ import com.ebanking.repository.ClientRepository;
 
 @SpringBootApplication
 @EnableAutoConfiguration
-public class MicroService1Application implements CommandLineRunner{
+public class MicroService1Application /*implements CommandLineRunner*/{
 
 	@Autowired
 	private ClientRepository clientRepository;
@@ -20,11 +20,11 @@ public class MicroService1Application implements CommandLineRunner{
 		SpringApplication.run(MicroService1Application.class, args);
 	}
 
-	@Override
+	/*@Override
 	public void run(String... args) throws Exception {
-		clientRepository.save(new Client(null, "ahmed", "ahmed", "ahmed@email.com", "0606060606", "homme", 21, "123456"));
+		//clientRepository.save(new Client(null, "ahmed", "ahmed", "ahmed@email.com", "0606060606", "homme", 21, "123456"));
 		
 		
-	}
+	}*/
 
 }
