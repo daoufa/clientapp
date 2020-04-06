@@ -10,6 +10,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 
 import com.ebanking.model.Client;
+import com.ebanking.model.CompteCourant;
 import com.ebanking.model.CompteEpargne;
 import com.ebanking.repository.ClientRepository;
 import com.ebanking.repository.CompteRepository;
@@ -30,8 +31,8 @@ public class MicroService1Application implements CommandLineRunner{
 	public void run(String... args) throws Exception {
 		Client client=new Client("elatrouz", "ahmed", "aelatrouz@gmailcom","0632302864","homme");
 		clientRepository.save(client);
-		compteRepository.save(new CompteEpargne(15000l, new Date(), 100.0, client, 0.1) );
-		
+		compteRepository.save(new CompteEpargne( new Date(), 100.0, client, 0.1) );
+		compteRepository.save(new CompteCourant( new Date(), 15000.0, client, 0.3));
 		
 	}
 

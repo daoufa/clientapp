@@ -20,8 +20,8 @@ public class CompteEpargne extends Compte {
 	
 	private double tauxInterets;
 	
-	public CompteEpargne(Long numCompte, Date dateCreation, double solde, Client client,double tauxInterets) {
-		super(numCompte, dateCreation, solde, client);
+	public CompteEpargne( Date dateCreation, double solde, Client client,double tauxInterets) {
+		super( dateCreation, solde, client);
 		// TODO Auto-generated constructor stub
 		this.tauxInterets=tauxInterets;
 	}

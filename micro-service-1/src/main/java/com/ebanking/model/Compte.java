@@ -47,7 +47,7 @@ public abstract class Compte {
 	
 	
 	
-	public Compte(Long numCompte, Date dateCreation, double solde, Client client) {
+	public Compte( Date dateCreation, double solde, Client client) {
 		super();
 		this.numCompte = numCompte;
 		this.dateCreation = dateCreation;
