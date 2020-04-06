@@ -1,7 +1,6 @@
 package com.ebanking.service;
 
-import java.util.Date;
-import java.util.Optional;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -34,6 +33,8 @@ public class banqueMetierImpl implements IBanqueService {
 
 	@Override
 	public void virement(Long numCpte1, Long numCpte2, double montant) {
+		if(numCpte1==numCpte2) 
+			throw new RuntimeException("le virement est vers votre compte!");
 		retirer(numCpte1, montant);
 		verser(numCpte2, montant);
 		Compte compte1=consulterCompte(numCpte1);
@@ -59,7 +60,7 @@ public class banqueMetierImpl implements IBanqueService {
 
 	
 	
-	@Override
+	
 	public void verser(Long numCpt, double montant) {
 		Compte cpt=consulterCompte(numCpt);
 		cpt.setSolde(cpt.getSolde()+montant);
@@ -68,7 +69,7 @@ public class banqueMetierImpl implements IBanqueService {
 		
 	}
 
-	@Override
+	
 	public void retirer(Long numCpt, double montant) {
 		Compte cpt=consulterCompte(numCpt);
 		double facilitesCaisse=0;

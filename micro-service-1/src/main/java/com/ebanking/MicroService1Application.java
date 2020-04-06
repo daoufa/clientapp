@@ -38,8 +38,9 @@ public class MicroService1Application implements CommandLineRunner{
 		compteRepository.save(new CompteEpargne( new Date(), 100.0, client, 0.1));
 		compteRepository.save(new CompteCourant( new Date(), 15000.0, client, 0.3));
 		Compte compte=iBanqueService.consulterCompte(1l);
+		Compte compte2=iBanqueService.consulterCompte(2l);
 		System.out.println(compte);
-		iBanqueService.verser(compte.getNumCompte(), 123456.0);
+		iBanqueService.virement(compte.getNumCompte(),compte2.getNumCompte(), 12.0);
 		
 	}
 
