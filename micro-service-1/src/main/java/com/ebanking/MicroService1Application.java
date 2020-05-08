@@ -21,6 +21,7 @@ import com.ebanking.repository.CompteRepository;
 import com.ebanking.repository.RoleRepository;
 import com.ebanking.repository.UserRepository;
 import com.ebanking.service.IBanqueService;
+import com.ebanking.service.IClientService;
 
 @SpringBootApplication
 @EnableAutoConfiguration
@@ -35,7 +36,7 @@ public class MicroService1Application implements CommandLineRunner{
 	@Autowired
 	private RoleRepository roleRepository;
 	@Autowired
-	private IBanqueService iBanqueService;
+	private IClientService iClientService;
 	
 	
 	
@@ -54,11 +55,11 @@ public class MicroService1Application implements CommandLineRunner{
 		clientRepository.save(client);
 		compteRepository.save(new CompteEpargne( new Date(), 100.0, client, 0.1));
 		compteRepository.save(new CompteCourant( new Date(), 15000.0, client, 0.3));
-		Compte compte=iBanqueService.consulterCompte(1l);
-		Compte compte2=iBanqueService.consulterCompte(2l);
+		Compte compte=iClientService.consulterCompte(1l);
+		Compte compte2=iClientService.consulterCompte(2l);
 		System.out.println(compte);
-		iBanqueService.virement(compte.getNumCompte(),compte2.getNumCompte(), 12.0);
-		iBanqueService.rechargeTelephone(compte.getNumCompte(), "0632302864", 20.0);
+		iClientService.virement(compte.getNumCompte(),compte2.getNumCompte(), 12.0);
+		iClientService.rechargeTelephone(compte.getNumCompte(), "0632302864", 20.0);
 		
 		Role role1=new Role();
 		role1.setRole("ADMIN");
@@ -73,10 +74,10 @@ public class MicroService1Application implements CommandLineRunner{
 		user1.addRole(role2);
 		userRepository.save(user1);
 		
-		User user2=new User();
+		/*User user2=new User();
 		user2.setUsername("admin");user2.setPassword(bcp.encode("123"));user2.setActive(true);
 		user2.addRole(role1);user2.addRole(role2);
-		userRepository.save(user2);
+		userRepository.save(user2);*/
 	}
 
 }

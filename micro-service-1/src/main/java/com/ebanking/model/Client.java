@@ -28,6 +28,7 @@ public class Client {
 		this.email = email;
 		this.tel = tel;
 		this.sexe = sexe;
+		this.estSuspendu=true;
 	}
 	
 	
@@ -41,4 +42,5 @@ public class Client {
 	private String tel;
 	private String sexe;
 	private String password;
+	private boolean estSuspendu;
 }
