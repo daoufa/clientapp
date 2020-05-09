@@ -32,7 +32,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	protected void configure(HttpSecurity http) throws Exception {
 		http.formLogin();
 		http.authorizeRequests().antMatchers("/saveAgent/**","/deleteAgent/**").hasRole("ADMIN");
-		/http.authorizeRequests().antMatchers("/saveClient/**","/deleteClient/**").hasRole("AGENT");
+		//http.authorizeRequests().antMatchers("/saveClient/**","/deleteClient/**").hasRole("AGENT");
 		http.authorizeRequests().anyRequest().authenticated();
 		
 	}
