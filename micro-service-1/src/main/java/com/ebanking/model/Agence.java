@@ -1,31 +1,33 @@
 package com.ebanking.model;
 
 
+import java.util.Collection;
+import java.util.List;
+
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+
 @Entity
 @ToString
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Agent {
+public class Agence {
 
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long code;
-	private String nom;
-	private String prenom;
-	@ManyToOne
-	@JoinColumn(name = "CODE_AGENCE")
-	private Agence agence;
+	private Long id;
+	private String adresse;
+	@OneToMany(mappedBy = "agence",fetch=FetchType.LAZY)
+	private Collection<Agent> agents;
 	
 }

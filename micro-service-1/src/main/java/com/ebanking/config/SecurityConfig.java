@@ -34,6 +34,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		http.authorizeRequests().antMatchers("/saveAgent/**","/deleteAgent/**").hasRole("ADMIN");
 		//http.authorizeRequests().antMatchers("/saveClient/**","/deleteClient/**").hasRole("AGENT");
 		http.authorizeRequests().anyRequest().authenticated();
+		http.csrf();//prevention du csrf
 		
 	}
 	
