@@ -1,12 +1,13 @@
 package com.ebanking.model;
 
+import java.util.Collection;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -18,13 +19,13 @@ import lombok.ToString;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Agent {
-
+public class Agence {
+	
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long code;
+	private Long id;
 	private String nom;
-	private String prenom;
-	@ManyToOne
-	@JoinColumn(name = "CODE_AGC")
-	private Agence agence;	
+	@OneToMany(mappedBy = "agence",fetch=FetchType.LAZY)
+	private Collection<Agent> agents;
+	
+
 }
