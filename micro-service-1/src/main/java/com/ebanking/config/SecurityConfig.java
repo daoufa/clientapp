@@ -30,12 +30,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.formLogin();
-		http.authorizeRequests().antMatchers("/saveAgent/**","/deleteAgent/**").hasRole("ADMIN");
+		//http.formLogin();
+		//http.authorizeRequests().antMatchers("/saveAgent/**","/deleteAgent/**").hasRole("ADMIN");
 		//http.authorizeRequests().antMatchers("/saveClient/**","/deleteClient/**").hasRole("AGENT");
-		http.authorizeRequests().anyRequest().authenticated();
-		http.csrf();//prevention du csrf
-		
+		//http.authorizeRequests().anyRequest().authenticated();
+		//http.csrf();//prevention du csrf
+		http.authorizeRequests().anyRequest().permitAll();
 	}
 	
 	@Bean

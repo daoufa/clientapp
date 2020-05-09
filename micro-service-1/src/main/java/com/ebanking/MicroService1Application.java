@@ -1,5 +1,6 @@
 package com.ebanking;
 
+import java.util.Collection;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,16 +11,23 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import com.ebanking.model.Admin;
+import com.ebanking.model.Agence;
+import com.ebanking.model.Agent;
 import com.ebanking.model.Client;
 import com.ebanking.model.Compte;
 import com.ebanking.model.CompteCourant;
 import com.ebanking.model.CompteEpargne;
 import com.ebanking.model.Role;
 import com.ebanking.model.User;
+import com.ebanking.repository.AdminRepository;
+import com.ebanking.repository.AgenceRepository;
+import com.ebanking.repository.AgentRepository;
 import com.ebanking.repository.ClientRepository;
 import com.ebanking.repository.CompteRepository;
 import com.ebanking.repository.RoleRepository;
 import com.ebanking.repository.UserRepository;
+import com.ebanking.service.IAdminService;
 import com.ebanking.service.IBanqueService;
 import com.ebanking.service.IClientService;
 
@@ -37,6 +45,16 @@ public class MicroService1Application implements CommandLineRunner{
 	private RoleRepository roleRepository;
 	@Autowired
 	private IClientService iClientService;
+	@Autowired
+	private IAdminService iAdminService;
+	@Autowired 
+	private AgentRepository agentRepository;
+	@Autowired
+	private AgenceRepository agenceRepository;
+	@Autowired
+	private AdminRepository adminRepository;
+	
+	
 	
 	
 	
@@ -50,6 +68,7 @@ public class MicroService1Application implements CommandLineRunner{
 	
 	@Override
 	public void run(String... args) throws Exception {
+		adminRepository.save(new Admin("dafali", "youssef", "heisenberg", "123456"));
 		BCryptPasswordEncoder bcp=new BCryptPasswordEncoder();
 		Client client=new Client("elatrouz", "ahmed", "aelatrouz@gmailcom","0632302864","homme");
 		clientRepository.save(client);
@@ -61,6 +80,16 @@ public class MicroService1Application implements CommandLineRunner{
 		iClientService.virement(compte.getNumCompte(),compte2.getNumCompte(), 12.0);
 		iClientService.rechargeTelephone(compte.getNumCompte(), "0632302864", 20.0);
 		
+		
+		Agence agence = agenceRepository.save(new Agence("ebank", "rue M6"));
+		Agence agence2 = agenceRepository.save(new Agence("ebank2", "rue M5"));
+		Agent ag1 = agentRepository.save(new Agent("jane", "patric", agence));
+		Agent ag2 = agentRepository.save(new Agent("tribiani", "joe", agence2));
+		Agent ag3 = agentRepository.save(new Agent("bing", "chandler", agence2));
+		
+		iAdminService.changeAgence(agence, ag3);
+		
+		
 		Role role1=new Role();
 		role1.setRole("ADMIN");
 		
@@ -70,14 +99,18 @@ public class MicroService1Application implements CommandLineRunner{
 		roleRepository.save(role1);
 		roleRepository.save(role2);
 		User user1=new User();
-		user1.setUsername("client1");user1.setPassword(bcp.encode("000"));user1.setActive(true);
+		user1.setUsername("client1");
+		user1.setPassword(bcp.encode("000"));
+		user1.setActive(true);
 		user1.addRole(role2);
 		userRepository.save(user1);
 		
-		/*User user2=new User();
-		user2.setUsername("admin");user2.setPassword(bcp.encode("123"));user2.setActive(true);
+		User user2=new User();
+		user2.setUsername("admin");
+		user2.setPassword(bcp.encode("123"));
+		user2.setActive(true);
 		user2.addRole(role1);user2.addRole(role2);
-		userRepository.save(user2);*/
+		userRepository.save(user2);
 	}
 
 }

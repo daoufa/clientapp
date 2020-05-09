@@ -1,12 +1,17 @@
 package com.ebanking.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.ebanking.model.Agence;
 import com.ebanking.model.Agent;
 import com.ebanking.repository.AgenceRepository;
 import com.ebanking.repository.AgentRepository;
 
+
+@Service
+@Transactional
 public class AdminServiceImpl implements IAdminService{
 	
 	@Autowired
