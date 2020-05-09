@@ -32,7 +32,7 @@ public class BanqueServiceImpl implements IBanqueService {
 	
 	@Override
 	public void EnrolerClient(Client client) {
-		//si le client n'existe pas deja
+		if(clientRepository.existsById(client.getCode()))
 		clientRepository.save(client);
 		
 	}

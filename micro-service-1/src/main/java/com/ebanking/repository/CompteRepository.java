@@ -8,7 +8,6 @@ import com.ebanking.model.Compte;
 
 @RepositoryRestResource
 @CrossOrigin("http://localhost:4200")
-public interface CompteRepository extends 
-					JpaRepository<Compte, Long> {
+public interface CompteRepository extends JpaRepository<Compte, Long> {
 
 }
