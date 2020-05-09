@@ -25,6 +25,12 @@ public class Agent {
 	private String nom;
 	private String prenom;
 	@ManyToOne
+<<<<<<< HEAD
 	@JoinColumn(name = "CODE_AGC")
 	private Agence agence;	
+=======
+	@JoinColumn(name = "CODE_AGENCE")
+	private Agence agence;
+	
+>>>>>>> f934e7d36f864455eac8104a12ebd4c1964a69fa
 }
