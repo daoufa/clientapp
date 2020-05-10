@@ -7,6 +7,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -14,6 +15,7 @@ import com.ebanking.model.Client;
 import com.ebanking.model.Compte;
 import com.ebanking.model.CompteCourant;
 import com.ebanking.model.CompteEpargne;
+import com.ebanking.model.Operation;
 import com.ebanking.model.Role;
 import com.ebanking.model.User;
 import com.ebanking.repository.ClientRepository;
@@ -37,6 +39,8 @@ public class MicroService1Application implements CommandLineRunner{
 	private RoleRepository roleRepository;
 	@Autowired
 	private IClientService iClientService;
+	@Autowired
+	private RepositoryRestConfiguration repositoryRestConfiguration;
 	
 	
 	
@@ -50,16 +54,19 @@ public class MicroService1Application implements CommandLineRunner{
 	
 	@Override
 	public void run(String... args) throws Exception {
+		repositoryRestConfiguration.exposeIdsFor(Client.class);
+		repositoryRestConfiguration.exposeIdsFor(Operation.class);
+		repositoryRestConfiguration.exposeIdsFor(Compte.class);
 		BCryptPasswordEncoder bcp=new BCryptPasswordEncoder();
 		Client client=new Client("elatrouz", "ahmed", "aelatrouz@gmailcom","0632302864","homme");
 		clientRepository.save(client);
 		compteRepository.save(new CompteEpargne( new Date(), 100.0, client, 0.1));
 		compteRepository.save(new CompteCourant( new Date(), 15000.0, client, 0.3));
-		Compte compte=iClientService.consulterCompte(1l);
-		Compte compte2=iClientService.consulterCompte(2l);
-		System.out.println(compte);
-		iClientService.virement(compte.getNumCompte(),compte2.getNumCompte(), 12.0);
-		iClientService.rechargeTelephone(compte.getNumCompte(), "0632302864", 20.0);
+		//Compte compte=iClientService.consulterCompte(1l);
+		//Compte compte2=iClientService.consulterCompte(2l);
+		//System.out.println(compte);
+		//iClientService.virement(compte.getNumCompte(),compte2.getNumCompte(), 12.0);
+		//iClientService.rechargeTelephone(compte.getNumCompte(), "0632302864", 20.0);
 		
 		Role role1=new Role();
 		role1.setRole("ADMIN");

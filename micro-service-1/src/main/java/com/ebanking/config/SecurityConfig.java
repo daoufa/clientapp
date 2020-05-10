@@ -20,21 +20,22 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.jdbcAuthentication()
+		/*auth.jdbcAuthentication()
 		.dataSource(dataSource)
 		.usersByUsernameQuery("select username as principal,password as credentials,active from users where username=?")
 		.authoritiesByUsernameQuery("select username as pricipale, role as role from users_roles where username=?")
 		.rolePrefix("ROLE_").passwordEncoder(bCryptPasswordEncoder());
-	}
+	*/}
 	
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.formLogin();
+		/*http.formLogin();
 		http.authorizeRequests().antMatchers("/saveAgent/**","/deleteAgent/**").hasRole("ADMIN");
 		//http.authorizeRequests().antMatchers("/saveClient/**","/deleteClient/**").hasRole("AGENT");
 		http.authorizeRequests().anyRequest().authenticated();
-		http.csrf();//prevention du csrf
+		http.csrf();//prevention du csrf*/
+		http.authorizeRequests().anyRequest().permitAll();
 		
 	}
 	

@@ -2,6 +2,7 @@ package com.ebanking.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -26,8 +27,10 @@ public class ClientServiceImpl implements IClientService {
 	public Compte consulterCompte(Long numCpte) {
 		Compte cpt=compteRepository.findById(numCpte).orElse(null);
 		if(cpt==null) throw new RuntimeException("Compte introuvable");
+		cpt.getClient().setComptes(null);;
 		return cpt;
 	}
+
 
 	@Override
 	public void virement(Long numCpte1, Long numCpte2, double montant) {
