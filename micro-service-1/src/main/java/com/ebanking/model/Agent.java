@@ -16,10 +16,15 @@ import lombok.ToString;
 @Entity
 @ToString
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
 public class Agent {
 
+	public Agent(String nom, String prenom, Agence agence) {
+		super();
+		this.nom = nom;
+		this.prenom = prenom;
+		this.agence = agence;
+	}
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long code;
 	private String nom;
@@ -28,4 +33,5 @@ public class Agent {
 	@JoinColumn(name = "CODE_AGENCE")
 	private Agence agence;
 	
+
 }

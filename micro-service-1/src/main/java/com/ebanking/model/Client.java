@@ -2,6 +2,7 @@ package com.ebanking.model;
 
 import java.util.Collection;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -37,7 +38,7 @@ public class Client {
 	private String nom;
 	private String prenom;
 	private String email;
-	@OneToMany(mappedBy = "client",fetch=FetchType.LAZY)
+	@OneToMany(mappedBy = "client",fetch=FetchType.LAZY,cascade = CascadeType.ALL)
 	private Collection<Compte> comptes;
 	private String tel;
 	private String sexe;

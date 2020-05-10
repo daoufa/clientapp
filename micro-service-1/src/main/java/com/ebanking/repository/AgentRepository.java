@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import com.ebanking.model.Agent;
 
 
+@CrossOrigin(origins = "http://localhost:4200" , allowedHeaders = "*")
 @RepositoryRestResource
-@CrossOrigin("http://localhost:4200") 
 public interface AgentRepository extends JpaRepository<Agent, Long> {
 
 }

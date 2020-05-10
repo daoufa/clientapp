@@ -1,6 +1,5 @@
 package com.ebanking.model;
 
-import java.util.Collection;
 import java.util.Date;
 
 import javax.persistence.DiscriminatorValue;
@@ -24,7 +23,6 @@ public class CompteEpargne extends Compte {
 	
 	public CompteEpargne( Date dateCreation, double solde, Client client,double tauxInterets) {
 		super( dateCreation, solde, client);
-		// TODO Auto-generated constructor stub
 		this.tauxInterets=tauxInterets;
 	}
 
