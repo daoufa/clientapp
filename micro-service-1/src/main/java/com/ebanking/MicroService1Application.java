@@ -48,8 +48,7 @@ public class MicroService1Application implements CommandLineRunner{
 	@Autowired
 	private IClientService iClientService;
 	@Autowired
-<<<<<<< HEAD
-=======
+
 	private IAdminService iAdminService;
 	@Autowired 
 	private AgentRepository agentRepository;
@@ -59,7 +58,6 @@ public class MicroService1Application implements CommandLineRunner{
 	private AdminRepository adminRepository;
 	
 	@Autowired
->>>>>>> 3229b261c2591ed49c9ea8aabc95273cd73c9bfd
 	private RepositoryRestConfiguration repositoryRestConfiguration;
 	
 	
