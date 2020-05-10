@@ -1,8 +1,8 @@
 package com.ebanking.service;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
@@ -45,9 +45,16 @@ public class ClientServiceImpl implements IClientService {
 	public List<Compte> getCompteEpargnes(Long cltid) {
 		Client client=clientRepository.findById(cltid).orElse(null);
 		List<Compte> cpt=compteRepository.findByClient(client);
-		//cpt.get(0).setClient(null);
-		System.out.println(cpt.get(0));
-		return cpt;
+		List<Compte> cEpargne=new ArrayList<Compte>();
+		for (Compte compte : cpt) {
+			if (compte instanceof CompteEpargne) {
+				
+				cEpargne.add((CompteEpargne)compte);
+				
+			}
+			
+		}
+		return cEpargne;
 	}
 	
 	
