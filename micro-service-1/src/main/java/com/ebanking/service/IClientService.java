@@ -1,5 +1,7 @@
 package com.ebanking.service;
 
+import java.util.List;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,7 +13,10 @@ import com.ebanking.model.Operation;
 @RestController
 public interface IClientService {
 	@GetMapping(value = "/compteConsulte/{id}")
-public Compte consulterCompte(@PathVariable(name="id") Long numCpte);
+	public Compte consulterCompte(@PathVariable(name="id") Long numCpte);
+	
+	@GetMapping(value = "/clients/{id}/compteEpargnes")
+	public List<Compte> getCompteEpargnes(@PathVariable(name="id") Long cltid);
 	
 	public void virement(Long numCpte1,Long numCpte2,double montant);
 	public void rechargeTelephone(Long numCpte,String numTel,double montant);

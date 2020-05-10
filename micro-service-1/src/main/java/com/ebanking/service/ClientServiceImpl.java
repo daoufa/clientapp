@@ -1,16 +1,23 @@
 package com.ebanking.service;
 
+import java.util.Iterator;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.ebanking.model.Client;
 import com.ebanking.model.Compte;
 import com.ebanking.model.CompteCourant;
+import com.ebanking.model.CompteEpargne;
 import com.ebanking.model.Operation;
 import com.ebanking.model.RechargeTelephone;
 import com.ebanking.model.Virement;
+import com.ebanking.repository.ClientRepository;
 import com.ebanking.repository.CompteRepository;
 import com.ebanking.repository.OperationRepository;
 @Service
@@ -22,6 +29,8 @@ public class ClientServiceImpl implements IClientService {
 	private CompteRepository compteRepository;
 	@Autowired
 	private OperationRepository OperationRepository;
+	@Autowired
+	private ClientRepository clientRepository;
 	
 	@Override
 	public Compte consulterCompte(Long numCpte) {
@@ -30,7 +39,18 @@ public class ClientServiceImpl implements IClientService {
 		cpt.getClient().setComptes(null);;
 		return cpt;
 	}
-
+	
+	
+	@Override
+	public List<Compte> getCompteEpargnes(Long cltid) {
+		Client client=clientRepository.findById(cltid).orElse(null);
+		List<Compte> cpt=compteRepository.findByClient(client);
+		//cpt.get(0).setClient(null);
+		System.out.println(cpt.get(0));
+		return cpt;
+	}
+	
+	
 
 	@Override
 	public void virement(Long numCpte1, Long numCpte2, double montant) {
@@ -84,5 +104,9 @@ public class ClientServiceImpl implements IClientService {
 		OperationRepository.save(new RechargeTelephone(montant, compte, numTel));
 		//TODO:comment envoyer une recharge?
 	}
+
+
+
+
 
 }

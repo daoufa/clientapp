@@ -14,6 +14,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.MappedSuperclass;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -33,6 +35,7 @@ public abstract class Operation {
 	private Long numero;
 	private Date dateOperation;
 	private double montant;
+	@JsonBackReference
 	@ManyToOne
 	@JoinColumn(name = "NUM_CPTE")
 	private Compte compte;

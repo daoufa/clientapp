@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -24,6 +26,7 @@ public class Agence {
 	private Long id;
 	private String nom;
 	private String adresse;
+	@JsonManagedReference
 	@OneToMany(mappedBy = "agence",fetch=FetchType.LAZY)
 	private Collection<Agent> agents;
 	

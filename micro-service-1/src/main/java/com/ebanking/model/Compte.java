@@ -16,6 +16,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -37,9 +39,11 @@ public abstract class Compte implements Serializable {
 	private Long numCompte;
 	private Date dateCreation;
 	private double solde;
+	@JsonBackReference
 	@ManyToOne
 	@JoinColumn(name = "CODE_CLT" )
 	private Client client;
+	@JsonManagedReference
 	@OneToMany(mappedBy = "compte")
 	private Collection<Operation> operations;
 	
