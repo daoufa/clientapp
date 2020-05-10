@@ -8,6 +8,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -54,7 +55,8 @@ public class MicroService1Application implements CommandLineRunner{
 	@Autowired
 	private AdminRepository adminRepository;
 	
-	
+	@Autowired
+	private RepositoryRestConfiguration repositoryRestConfiguration;
 	
 	
 	
@@ -68,6 +70,9 @@ public class MicroService1Application implements CommandLineRunner{
 	
 	@Override
 	public void run(String... args) throws Exception {
+		repositoryRestConfiguration.exposeIdsFor(Client.class);
+		repositoryRestConfiguration.exposeIdsFor(CompteCourant.class);
+		repositoryRestConfiguration.exposeIdsFor(CompteEpargne.class);
 		adminRepository.save(new Admin("dafali", "youssef", "heisenberg", "123456"));
 		BCryptPasswordEncoder bcp=new BCryptPasswordEncoder();
 		Client client=new Client("elatrouz", "ahmed", "aelatrouz@gmailcom","0632302864","homme");

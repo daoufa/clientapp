@@ -29,7 +29,6 @@ public class BanqueServiceImpl implements IBanqueService {
 	private ClientRepository clientRepository;
 	
 	
-	
 	@Override
 	public void EnrolerClient(Client client) {
 		if(clientRepository.existsById(client.getCode()))
@@ -54,5 +53,7 @@ public class BanqueServiceImpl implements IBanqueService {
 		// TODO Auto-generated method stub
 		
 	}
+
+	
 
 }

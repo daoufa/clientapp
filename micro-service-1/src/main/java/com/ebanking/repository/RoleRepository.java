@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 
 import com.ebanking.model.Role;
 
-@RepositoryRestResource
 @CrossOrigin("http://localhost:4200")
+@RepositoryRestResource
 public interface RoleRepository extends JpaRepository<Role,Long> {
 
 
