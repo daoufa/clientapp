@@ -1,5 +1,6 @@
 package com.ebanking.model;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.persistence.DiscriminatorColumn;
@@ -46,6 +47,18 @@ public abstract class Operation {
 		this.dateOperation = new Date();
 		this.montant = montant;
 		this.compte = compte;
+	}
+	
+	public Long getCompteId() {
+		return compte.getNumCompte();
+	}
+	public String getOperationType() {
+		return this instanceof Virement? "V":"R";
+	}
+	public String getDateOperation() {
+		SimpleDateFormat sdf=new SimpleDateFormat("dd/MM/yyyy");
+		return sdf.format(dateOperation);
+		
 	}
 	
 	

@@ -29,5 +29,9 @@ public class Virement extends Operation {
 		this.destinataireCompte=dest;
 		// TODO Auto-generated constructor stub
 	}
+	
+	public Long getDestinataireCompteId() {
+		return destinataireCompte.getNumCompte();
+	}
 
 }
