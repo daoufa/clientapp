@@ -30,6 +30,12 @@ public class Virement extends Operation {
 		// TODO Auto-generated constructor stub
 	}
 	
+<<<<<<< HEAD
 	
+=======
+	public Long getDestinataireCompteId() {
+		return destinataireCompte.getNumCompte();
+	}
+>>>>>>> 58e225cce3d31fde80a87522ced37867a2474af0
 
 }

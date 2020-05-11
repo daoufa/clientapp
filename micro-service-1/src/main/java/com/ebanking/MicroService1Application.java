@@ -22,6 +22,7 @@ import com.ebanking.model.CompteEpargne;
 import com.ebanking.model.Operation;
 import com.ebanking.model.Role;
 import com.ebanking.model.User;
+import com.ebanking.model.Virement;
 import com.ebanking.repository.AdminRepository;
 import com.ebanking.repository.AgenceRepository;
 import com.ebanking.repository.AgentRepository;
@@ -48,8 +49,8 @@ public class MicroService1Application implements CommandLineRunner{
 	@Autowired
 	private IClientService iClientService;
 	@Autowired
-
 	private IAdminService iAdminService;
+	
 	@Autowired 
 	private AgentRepository agentRepository;
 	@Autowired
@@ -77,6 +78,10 @@ public class MicroService1Application implements CommandLineRunner{
 		repositoryRestConfiguration.exposeIdsFor(Compte.class);
 		repositoryRestConfiguration.exposeIdsFor(CompteCourant.class);
 		repositoryRestConfiguration.exposeIdsFor(CompteEpargne.class);
+
+		repositoryRestConfiguration.exposeIdsFor(Virement.class);
+
+		repositoryRestConfiguration.exposeIdsFor(Operation.class);
 		adminRepository.save(new Admin("dafali", "youssef", "heisenberg", "123456"));
 		BCryptPasswordEncoder bcp=new BCryptPasswordEncoder();
 		Client client=new Client("elatrouz", "ahmed", "aelatrouz@gmailcom","0632302864","homme");

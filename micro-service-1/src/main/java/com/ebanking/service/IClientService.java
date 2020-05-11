@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ebanking.model.Compte;
+import com.ebanking.model.CompteEpargne;
 import com.ebanking.model.Operation;
 @RestController
 public interface IClientService {
