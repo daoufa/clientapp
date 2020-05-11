@@ -27,15 +27,11 @@ public class Virement extends Operation {
 	public Virement(Compte compte,Compte dest, double montant ) {
 		super(  montant, compte);
 		this.destinataireCompte=dest;
-		// TODO Auto-generated constructor stub
 	}
 	
-<<<<<<< HEAD
-	
-=======
+
 	public Long getDestinataireCompteId() {
 		return destinataireCompte.getNumCompte();
 	}
->>>>>>> 58e225cce3d31fde80a87522ced37867a2474af0
 
 }

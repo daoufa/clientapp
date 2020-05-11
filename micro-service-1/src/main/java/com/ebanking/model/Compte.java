@@ -55,13 +55,9 @@ public abstract class Compte implements Serializable {
 		this.client = client;
 	}
 	
-<<<<<<< HEAD
+
 	public String getClientNom() {
 		return client.getNom();
-=======
-	public Long getClientId() {
-		return client.getCode();
->>>>>>> 58e225cce3d31fde80a87522ced37867a2474af0
 	}
 	
 
