@@ -62,8 +62,9 @@ public abstract class Compte implements Serializable {
 		else isEpargne=false;
 	}
 	
-	public Long getClientId() {
-		return client.getCode();
+
+	public String getClientNom() {
+		return client.getNom();
 	}
 	
 

@@ -48,4 +48,16 @@ public class Client {
 	private String sexe;
 	private String password;
 	private boolean estSuspendu;
+	
+	
+	public Collection<Compte> getClientCompte(){
+		return this.comptes;
+	}
 }
+
+
+
+
+
+
+

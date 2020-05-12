@@ -89,13 +89,20 @@ public class MicroService1Application implements CommandLineRunner{
 		adminRepository.save(new Admin("dafali", "youssef", "heisenberg", "123456"));
 		BCryptPasswordEncoder bcp=new BCryptPasswordEncoder();
 		Client client=new Client("elatrouz", "ahmed", "aelatrouz@gmailcom","0632302864","homme");
+		Client client2=new Client("dafali", "youssef", "dafali@email.com","0693220509","homme");
 		clientRepository.save(client);
+		clientRepository.save(client2);
 		compteRepository.save(new CompteEpargne( new Date(), 100.0, client, 0.1));
 		compteRepository.save(new CompteCourant( new Date(), 15000.0, client, 0.3));
+
 		Compte c1=compteRepository.findById(2l).orElse(null);
 		Compte c2=compteRepository.findById(1l).orElse(null);
 		Operation operation=new Virement(c1, c2, 3500.00);
 		operationRepository.save(operation);
+
+		compteRepository.save(new CompteEpargne( new Date(), 150.0, client2, 0.9));
+		compteRepository.save(new CompteCourant( new Date(), 20000.0, client2, 0.5));
+
 		//Compte compte=iClientService.consulterCompte(1l);
 		//Compte compte2=iClientService.consulterCompte(2l);
 		//System.out.println(compte);
@@ -109,7 +116,7 @@ public class MicroService1Application implements CommandLineRunner{
 		Agent ag2 = agentRepository.save(new Agent("tribiani", "joe", agence2));
 		Agent ag3 = agentRepository.save(new Agent("bing", "chandler", agence2));
 		
-		iAdminService.changeAgence(agence, ag3);
+		//iAdminService.changeAgence(agence, ag3);
 		
 		
 		Role role1=new Role();
