@@ -8,6 +8,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
@@ -21,7 +22,7 @@ import lombok.ToString;
 public class Virement extends Operation {
 	
 	@ManyToOne
-	@JsonBackReference
+	@JsonManagedReference
 	@JoinColumn(name = "NUM_CPTE_DEST")
 	Compte destinataireCompte;
 	

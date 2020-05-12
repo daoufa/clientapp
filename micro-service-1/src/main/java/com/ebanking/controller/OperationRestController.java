@@ -49,7 +49,7 @@ public class OperationRestController {
 	}
 	
 	@PostMapping (value="/virements",consumes = "application/json", produces = "application/json")
-	public Operation saveVirements(@RequestBody Virement v){
+	public Operation saveVirements(@RequestBody Operation v){
 		v.setVirement(true);
 		return OperationRepository.save(v);
 	}
