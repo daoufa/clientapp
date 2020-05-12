@@ -14,11 +14,13 @@ import java.lang.String;
 import com.ebanking.model.Compte;
 import com.ebanking.model.Client;
 
-@CrossOrigin(origins = "http://localhost:4200" , allowedHeaders = "http://localhost:4200")
+@CrossOrigin("*")
 @RepositoryRestResource
 public interface CompteRepository extends JpaRepository<Compte, Long> {
 	
 
  List<Compte> findByClient(Client client);
+ List<Compte> findByIsEpargne(boolean isEpargne);
+ Compte findByNumCompteAndIsEpargne(Long numCompte,boolean isEpargne);
 
 }

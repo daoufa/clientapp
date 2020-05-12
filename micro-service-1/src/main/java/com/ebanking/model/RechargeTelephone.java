@@ -6,6 +6,8 @@ import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
+import com.fasterxml.jackson.annotation.JsonTypeName;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -27,5 +29,8 @@ public class RechargeTelephone extends Operation {
 		this.numTel=numTel;
 		// TODO Auto-generated constructor stub
 	}
-
+	
+	public String getNumTel() {
+		return numTel;
+	}
 }

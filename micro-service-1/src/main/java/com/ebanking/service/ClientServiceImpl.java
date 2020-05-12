@@ -9,6 +9,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import com.ebanking.model.Client;
 import com.ebanking.model.Compte;
@@ -40,8 +42,10 @@ public class ClientServiceImpl implements IClientService {
 		return cpt;
 	}
 	
+
 	
-	@Override
+
+	/*@Override
 	public List<Compte> getCompteEpargnes(Long cltid) {
 		Client client=clientRepository.findById(cltid).orElse(null);
 		List<Compte> cpt=compteRepository.findByClient(client);
@@ -55,7 +59,7 @@ public class ClientServiceImpl implements IClientService {
 			
 		}
 		return cEpargne;
-	}
+	}*/
 	
 	
 
@@ -111,6 +115,8 @@ public class ClientServiceImpl implements IClientService {
 		OperationRepository.save(new RechargeTelephone(montant, compte, numTel));
 		//TODO:comment envoyer une recharge?
 	}
+
+
 
 
 

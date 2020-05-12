@@ -1,4 +1,9 @@
 package com.ebanking.model;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.annotation.JsonTypeInfo.As;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonSubTypes.Type;
 
 import java.io.Serializable;
 import java.util.Collection;
@@ -32,6 +37,7 @@ import lombok.ToString;
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "TYPE_CPTE",
 discriminatorType = DiscriminatorType.STRING,length = 2 )
+
 public abstract class Compte implements Serializable {
 	
 	@Id 
@@ -39,20 +45,21 @@ public abstract class Compte implements Serializable {
 	private Long numCompte;
 	private Date dateCreation;
 	private double solde;
-	@JsonBackReference
 	@ManyToOne
 	@JoinColumn(name = "CODE_CLT" )
 	private Client client;
-	@JsonManagedReference
+	@JsonBackReference
 	@OneToMany(mappedBy = "compte")
 	private Collection<Operation> operations;
-	
+	private boolean isEpargne;
 	
 	public Compte( Date dateCreation, double solde, Client client) {
 		super();
 		this.dateCreation = dateCreation;
 		this.solde = solde;
 		this.client = client;
+		if(this instanceof CompteEpargne) isEpargne=true;
+		else isEpargne=false;
 	}
 	
 	public Long getClientId() {

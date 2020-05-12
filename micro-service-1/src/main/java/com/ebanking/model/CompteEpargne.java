@@ -5,6 +5,8 @@ import java.util.Date;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
+import com.fasterxml.jackson.annotation.JsonTypeName;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,7 +14,6 @@ import lombok.ToString;
 
 
 @Entity
-@Data
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString

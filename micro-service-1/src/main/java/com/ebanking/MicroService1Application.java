@@ -28,6 +28,7 @@ import com.ebanking.repository.AgenceRepository;
 import com.ebanking.repository.AgentRepository;
 import com.ebanking.repository.ClientRepository;
 import com.ebanking.repository.CompteRepository;
+import com.ebanking.repository.OperationRepository;
 import com.ebanking.repository.RoleRepository;
 import com.ebanking.repository.UserRepository;
 import com.ebanking.service.IAdminService;
@@ -57,6 +58,9 @@ public class MicroService1Application implements CommandLineRunner{
 	private AgenceRepository agenceRepository;
 	@Autowired
 	private AdminRepository adminRepository;
+
+	@Autowired
+	private OperationRepository operationRepository;
 	
 	@Autowired
 	private RepositoryRestConfiguration repositoryRestConfiguration;
@@ -88,6 +92,10 @@ public class MicroService1Application implements CommandLineRunner{
 		clientRepository.save(client);
 		compteRepository.save(new CompteEpargne( new Date(), 100.0, client, 0.1));
 		compteRepository.save(new CompteCourant( new Date(), 15000.0, client, 0.3));
+		Compte c1=compteRepository.findById(2l).orElse(null);
+		Compte c2=compteRepository.findById(1l).orElse(null);
+		Operation operation=new Virement(c1, c2, 3500.00);
+		operationRepository.save(operation);
 		//Compte compte=iClientService.consulterCompte(1l);
 		//Compte compte2=iClientService.consulterCompte(2l);
 		//System.out.println(compte);

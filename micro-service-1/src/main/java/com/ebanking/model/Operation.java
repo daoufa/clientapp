@@ -1,6 +1,8 @@
 package com.ebanking.model;
 
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
+
 import java.util.Date;
 
 import javax.persistence.DiscriminatorColumn;
@@ -14,13 +16,16 @@ import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.MappedSuperclass;
-
+import com.fasterxml.jackson.annotation.*;
+import com.fasterxml.jackson.annotation.JsonSubTypes.Type;
 import com.fasterxml.jackson.annotation.JsonBackReference;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 @Entity
 @AllArgsConstructor
@@ -29,17 +34,19 @@ import lombok.NoArgsConstructor;
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "TYPE_OP",
 discriminatorType = DiscriminatorType.STRING,length = 2)
-public abstract class Operation {
+
+public abstract class Operation implements Serializable {
 	
 
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long numero;
 	private Date dateOperation;
 	private double montant;
-	@JsonBackReference
+	@JsonManagedReference
 	@ManyToOne
 	@JoinColumn(name = "NUM_CPTE")
 	private Compte compte;
+	boolean isVirement;
 	
 	
 	public Operation(double montant, Compte compte) {
@@ -47,6 +54,8 @@ public abstract class Operation {
 		this.dateOperation = new Date();
 		this.montant = montant;
 		this.compte = compte;
+		if(this instanceof Virement) isVirement=true;
+		else isVirement=false;
 	}
 	
 	public Long getCompteId() {

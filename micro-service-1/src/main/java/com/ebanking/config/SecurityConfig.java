@@ -35,6 +35,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		//http.authorizeRequests().antMatchers("/saveClient/**","/deleteClient/**").hasRole("AGENT");
 		http.authorizeRequests().anyRequest().authenticated();
 		http.csrf();//prevention du csrf*/
+		http.cors().and().csrf().disable();
 		http.authorizeRequests().anyRequest().permitAll();
 		
 
