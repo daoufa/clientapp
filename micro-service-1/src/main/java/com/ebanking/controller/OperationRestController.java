@@ -50,11 +50,13 @@ public class OperationRestController {
 	
 	@PostMapping (value="/virements",consumes = "application/json", produces = "application/json")
 	public Operation saveVirements(@RequestBody Virement v){
+		v.setVirement(true);
 		return OperationRepository.save(v);
 	}
 	
 	@PostMapping (value="/recharges",consumes = "application/json", produces = "application/json")
 	public Operation saveRecharges(@RequestBody RechargeTelephone r){
+		r.setVirement(false);
 		return OperationRepository.save(r);
 	}
 }
