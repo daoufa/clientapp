@@ -49,7 +49,7 @@ public class Client {
 	private String password;
 	private boolean estSuspendu;
 	
-	
+	@JsonBackReference
 	public Collection<Compte> getClientCompte(){
 		return this.comptes;
 	}
