@@ -3,6 +3,7 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeInfo.As;
 import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.fasterxml.jackson.annotation.JsonSubTypes.Type;
 
 import java.io.Serializable;
@@ -22,7 +23,10 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -37,8 +41,11 @@ import lombok.ToString;
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "TYPE_CPTE",
 discriminatorType = DiscriminatorType.STRING,length = 2 )
-
-public abstract class Compte implements Serializable {
+@JsonIdentityInfo(
+		   generator = ObjectIdGenerators.PropertyGenerator.class,
+		   property = "numCompte")
+@JsonIgnoreProperties({ "virements", "rechargeTelephones" })
+public abstract class Compte  {
 	
 	@Id 
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -48,9 +55,12 @@ public abstract class Compte implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "CODE_CLT" )
 	private Client client;
-	@JsonBackReference
+	
 	@OneToMany(mappedBy = "compte")
-	private Collection<Operation> operations;
+	private Collection<Virement> virements;
+	
+	@OneToMany(mappedBy = "compte")
+	private Collection<RechargeTelephone> rechargeTelephones;
 	private boolean isEpargne;
 	
 	public Compte( Date dateCreation, double solde, Client client) {
@@ -63,9 +73,7 @@ public abstract class Compte implements Serializable {
 	}
 	
 
-	public String getClientNom() {
-		return client.getNom();
-	}
+	
 	
 
 }

@@ -2,8 +2,15 @@ package com.ebanking.model;
 
 
 
+import java.io.Serializable;
+import java.util.Collection;
+import java.util.Date;
+
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
@@ -11,6 +18,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
@@ -18,26 +26,30 @@ import lombok.ToString;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-@DiscriminatorValue("V")
-public class Virement extends Operation {
-	
+@Data
+public class Virement {
+	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long numero;
+	private Date date;
+	private double montant;
 	@ManyToOne
-	@JsonManagedReference
+	@JoinColumn(name = "NUM_CPTE")
+	private Compte compte;
+	@ManyToOne
 	@JoinColumn(name = "NUM_CPTE_DEST")
 	Compte destinataireCompte;
 	
 	
-	public Virement(Compte compte,Compte dest, double montant ) {
-		super(  montant, compte);
+	public Virement( Compte compte,Compte dest,double montant ) {
+		
+		super();
+		this.montant = montant;
+		//this.compte = compte;
 		this.destinataireCompte=dest;
 	}
-	public Compte getDestinataireCompte() {
-		return destinataireCompte;
-	}
+
 	
 
-	public Long getDestinataireCompteId() {
-		return destinataireCompte.getNumCompte();
-	}
+	
 
 }

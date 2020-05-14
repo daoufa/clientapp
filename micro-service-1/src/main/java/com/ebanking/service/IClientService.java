@@ -2,6 +2,7 @@ package com.ebanking.service;
 
 import java.util.List;
 
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,7 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ebanking.model.Client;
 import com.ebanking.model.Compte;
 import com.ebanking.model.CompteEpargne;
-import com.ebanking.model.Operation;
 import com.ebanking.model.Virement;
 @RestController
 public interface IClientService {
@@ -31,6 +31,5 @@ public interface IClientService {
 	public void virement(Long numCpte1,Long numCpte2,double montant);
 	public void rechargeTelephone(Long numCpte,String numTel,double montant);
 	
-	public Page<Operation> listOperation(Long numCpte,int page,int size);
 
 }

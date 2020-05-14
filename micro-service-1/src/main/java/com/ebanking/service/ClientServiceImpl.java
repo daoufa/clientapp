@@ -1,6 +1,7 @@
 package com.ebanking.service;
 
 import java.util.ArrayList;
+
 import java.util.Iterator;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,12 +17,11 @@ import com.ebanking.model.Client;
 import com.ebanking.model.Compte;
 import com.ebanking.model.CompteCourant;
 import com.ebanking.model.CompteEpargne;
-import com.ebanking.model.Operation;
 import com.ebanking.model.RechargeTelephone;
 import com.ebanking.model.Virement;
 import com.ebanking.repository.ClientRepository;
 import com.ebanking.repository.CompteRepository;
-import com.ebanking.repository.OperationRepository;
+import com.ebanking.repository.VirementRepository;
 @Service
 @Transactional
 public class ClientServiceImpl implements IClientService {
@@ -30,9 +30,9 @@ public class ClientServiceImpl implements IClientService {
 	@Autowired
 	private CompteRepository compteRepository;
 	@Autowired
-	private OperationRepository OperationRepository;
-	@Autowired
 	private ClientRepository clientRepository;
+	@Autowired
+	private VirementRepository virementRepository;
 	
 	@Override
 	public Compte consulterCompte(Long numCpte) {
@@ -71,18 +71,12 @@ public class ClientServiceImpl implements IClientService {
 		verser(numCpte2, montant);
 		Compte compte1=consulterCompte(numCpte1);
 		Compte compte2=consulterCompte(numCpte2);
-		Operation operation=new Virement(compte1,compte2,montant) ;
-		OperationRepository.save(operation);
+		Virement v=new Virement(compte1,compte2,montant) ;
+		virementRepository.save(v);
 
 	}
 
 	
-	
-	@Override
-	public Page<Operation> listOperation(Long numCpte, int page, int size) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	
 	
@@ -110,11 +104,14 @@ public class ClientServiceImpl implements IClientService {
 
 	@Override
 	public void rechargeTelephone(Long numCpte, String numTel,double montant) {
-		retirer(numCpte, montant);
+		/*retirer(numCpte, montant);
 		Compte compte=consulterCompte(numCpte);
 		OperationRepository.save(new RechargeTelephone(montant, compte, numTel));
-		//TODO:comment envoyer une recharge?
+		//TODO:comment envoyer une recharge?*/
 	}
+
+
+
 
 
 

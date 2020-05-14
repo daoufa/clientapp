@@ -27,7 +27,5 @@ public class CompteEpargne extends Compte {
 		this.tauxInterets=tauxInterets;
 	}
 
-	public double getTauxInterets() {
-		return tauxInterets;
-	}
+
 }

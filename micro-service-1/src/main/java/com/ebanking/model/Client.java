@@ -32,7 +32,7 @@ public class Client {
 		this.email = email;
 		this.tel = tel;
 		this.sexe = sexe;
-		this.estSuspendu=true;
+		this.estSuspendu=false;
 	}
 	
 	
@@ -50,7 +50,7 @@ public class Client {
 	private boolean estSuspendu;
 	
 	@JsonBackReference
-	public Collection<Compte> getClientCompte(){
+	public Collection<Compte> getClientComptes(){
 		return this.comptes;
 	}
 }

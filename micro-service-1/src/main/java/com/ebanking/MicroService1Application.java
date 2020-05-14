@@ -1,6 +1,7 @@
 package com.ebanking;
 
 import java.util.Collection;
+
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +20,7 @@ import com.ebanking.model.Client;
 import com.ebanking.model.Compte;
 import com.ebanking.model.CompteCourant;
 import com.ebanking.model.CompteEpargne;
-import com.ebanking.model.Operation;
+import com.ebanking.model.RechargeTelephone;
 import com.ebanking.model.Role;
 import com.ebanking.model.User;
 import com.ebanking.model.Virement;
@@ -28,9 +29,9 @@ import com.ebanking.repository.AgenceRepository;
 import com.ebanking.repository.AgentRepository;
 import com.ebanking.repository.ClientRepository;
 import com.ebanking.repository.CompteRepository;
-import com.ebanking.repository.OperationRepository;
 import com.ebanking.repository.RoleRepository;
 import com.ebanking.repository.UserRepository;
+import com.ebanking.repository.VirementRepository;
 import com.ebanking.service.IAdminService;
 import com.ebanking.service.IBanqueService;
 import com.ebanking.service.IClientService;
@@ -60,7 +61,7 @@ public class MicroService1Application implements CommandLineRunner{
 	private AdminRepository adminRepository;
 
 	@Autowired
-	private OperationRepository operationRepository;
+	private VirementRepository virementRepository;
 	
 	@Autowired
 	private RepositoryRestConfiguration repositoryRestConfiguration;
@@ -78,14 +79,13 @@ public class MicroService1Application implements CommandLineRunner{
 	@Override
 	public void run(String... args) throws Exception {
 		repositoryRestConfiguration.exposeIdsFor(Client.class);
-		repositoryRestConfiguration.exposeIdsFor(Operation.class);
 		repositoryRestConfiguration.exposeIdsFor(Compte.class);
 		repositoryRestConfiguration.exposeIdsFor(CompteCourant.class);
 		repositoryRestConfiguration.exposeIdsFor(CompteEpargne.class);
 
-		repositoryRestConfiguration.exposeIdsFor(Virement.class);
+		repositoryRestConfiguration.exposeIdsFor(RechargeTelephone.class);
 
-		repositoryRestConfiguration.exposeIdsFor(Operation.class);
+		repositoryRestConfiguration.exposeIdsFor(Virement.class);
 		adminRepository.save(new Admin("dafali", "youssef", "heisenberg", "123456"));
 		BCryptPasswordEncoder bcp=new BCryptPasswordEncoder();
 		Client client=new Client("elatrouz", "ahmed", "aelatrouz@gmailcom","0632302864","homme");
@@ -97,8 +97,8 @@ public class MicroService1Application implements CommandLineRunner{
 
 		Compte c1=compteRepository.findById(2l).orElse(null);
 		Compte c2=compteRepository.findById(1l).orElse(null);
-		Operation operation=new Virement(c1, c2, 3500.00);
-		operationRepository.save(operation);
+		Virement virement=new Virement(c1, c2, 3500.00);
+		virementRepository.save(virement);
 
 		compteRepository.save(new CompteEpargne( new Date(), 150.0, client2, 0.9));
 		compteRepository.save(new CompteCourant( new Date(), 20000.0, client2, 0.5));
