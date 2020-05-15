@@ -19,8 +19,8 @@ import com.ebanking.model.Client;
 public interface CompteRepository extends JpaRepository<Compte, Long> {
 	
 
- List<Compte> findByClient(Client client);
+ List<Compte> findByClient(Client client); // compte has just one client
  List<Compte> findByIsEpargne(boolean isEpargne);
  Compte findByNumCompteAndIsEpargne(Long numCompte,boolean isEpargne);
-
+ Compte findByNumCompte(Long numCompte);
 }
