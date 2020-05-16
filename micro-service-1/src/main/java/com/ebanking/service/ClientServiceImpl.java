@@ -68,7 +68,7 @@ public class ClientServiceImpl implements IClientService {
 		if(numCpte1==numCpte2) 
 			throw new RuntimeException("le virement est vers votre compte!");
 		retirer(numCpte1, montant);
-		verser(numCpte2, montant);
+		verser(numCpte2, montant); 
 		Compte compte1=consulterCompte(numCpte1);
 		Compte compte2=consulterCompte(numCpte2);
 		Virement v=new Virement(compte1,compte2,montant) ;

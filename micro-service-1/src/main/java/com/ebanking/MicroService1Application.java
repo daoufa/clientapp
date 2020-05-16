@@ -90,8 +90,13 @@ public class MicroService1Application implements CommandLineRunner{
 		BCryptPasswordEncoder bcp=new BCryptPasswordEncoder();
 		Client client=new Client("elatrouz", "ahmed", "aelatrouz@gmailcom","0632302864","homme");
 		Client client2=new Client("dafali", "youssef", "dafali@email.com","0693220509","homme");
+		Client client3=new Client("Daoufa", "abderahman", "daufa@email.com","066666666","homme");
+		Client client4=new Client("Tazi", "Karima", "tazi@email.com","0555555555","femme");
+		
 		clientRepository.save(client);
 		clientRepository.save(client2);
+		clientRepository.save(client3);
+		clientRepository.save(client4);
 		compteRepository.save(new CompteEpargne( new Date(), 100.0, client, 0.1));
 		compteRepository.save(new CompteCourant( new Date(), 15000.0, client, 0.3));
 
@@ -103,15 +108,15 @@ public class MicroService1Application implements CommandLineRunner{
 		compteRepository.save(new CompteEpargne( new Date(), 150.0, client2, 0.9));
 		compteRepository.save(new CompteCourant( new Date(), 20000.0, client2, 0.5));
 
-		//Compte compte=iClientService.consulterCompte(1l);
-		//Compte compte2=iClientService.consulterCompte(2l);
+		Compte compte=iClientService.consulterCompte(1l);
+		Compte compte2=iClientService.consulterCompte(2l);
 		//System.out.println(compte);
-		//iClientService.virement(compte.getNumCompte(),compte2.getNumCompte(), 12.0);
-		//iClientService.rechargeTelephone(compte.getNumCompte(), "0632302864", 20.0);
+		iClientService.virement(compte.getNumCompte(),compte2.getNumCompte(), 12.0);
+		iClientService.rechargeTelephone(compte.getNumCompte(), "0632302864", 20.0);
 		
 		
 		Agence agence = agenceRepository.save(new Agence("ebank", "rue M6"));
-		Agence agence2 = agenceRepository.save(new Agence("ebank2", "rue M5"));
+		Agence agence2 = agenceRepository.save(new Agence("ebank2", "rue M5")); 
 		Agent ag1 = agentRepository.save(new Agent("jane", "patric", agence));
 		Agent ag2 = agentRepository.save(new Agent("tribiani", "joe", agence2));
 		Agent ag3 = agentRepository.save(new Agent("bing", "chandler", agence2));
