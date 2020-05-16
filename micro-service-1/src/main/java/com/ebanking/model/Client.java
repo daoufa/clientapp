@@ -1,6 +1,8 @@
 package com.ebanking.model;
 
+import java.text.SimpleDateFormat;
 import java.util.Collection;
+import java.util.Date;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -24,18 +26,6 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Client {
-
-	public Client(String nom, String prenom, String email, String tel, String sexe) {
-		super();
-		this.nom = nom;
-		this.prenom = prenom;
-		this.email = email;
-		this.tel = tel;
-		this.sexe = sexe;
-		this.estSuspendu=false;
-	}
-	
-	
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long code;
 	private String nom;
@@ -48,10 +38,45 @@ public class Client {
 	private String sexe;
 	private String password;
 	private boolean estSuspendu;
+	private Date dateNaissance;
+	private String nationalite;
+	private String paysResidence;
+	private String situationProf;
+	private String profession;
+	private String cin;
+	private String ville;
+	private String identitePhoto;
+	private String passportPhoto;
+	
 	
 	@JsonBackReference
 	public Collection<Compte> getClientComptes(){
 		return this.comptes;
+	}
+
+	@SuppressWarnings("deprecation")
+	public Client(String nom, String prenom, String email, String tel, String sexe,
+			 boolean estSuspendu, String dateNaissance, String nationalite, String paysResidence,
+			String situationProf, String profession, String cin, String ville, String identitePhoto,
+			String passportPhoto) {
+		super();
+		this.nom = nom;
+		this.prenom = prenom;
+		this.email = email;
+		this.tel = tel;
+		this.sexe = sexe;
+		this.estSuspendu = estSuspendu;
+		this.nationalite = nationalite;
+		this.paysResidence = paysResidence;
+		this.situationProf = situationProf;
+		this.profession = profession;
+		this.cin = cin;
+		this.ville = ville;
+		this.identitePhoto = identitePhoto;
+		this.passportPhoto = passportPhoto;
+		
+		SimpleDateFormat sdf=new SimpleDateFormat("dd/MM/yyyy");
+		this.dateNaissance =new Date(sdf.format(new Date(dateNaissance)));
 	}
 }
 

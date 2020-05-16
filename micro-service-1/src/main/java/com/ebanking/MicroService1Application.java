@@ -38,7 +38,7 @@ import com.ebanking.service.IClientService;
 
 @SpringBootApplication
 @EnableAutoConfiguration
-public class MicroService1Application implements CommandLineRunner{
+public class MicroService1Application implements CommandLineRunner {
 
 	@Autowired
 	private ClientRepository clientRepository;
@@ -52,8 +52,8 @@ public class MicroService1Application implements CommandLineRunner{
 	private IClientService iClientService;
 	@Autowired
 	private IAdminService iAdminService;
-	
-	@Autowired 
+
+	@Autowired
 	private AgentRepository agentRepository;
 	@Autowired
 	private AgenceRepository agenceRepository;
@@ -62,20 +62,14 @@ public class MicroService1Application implements CommandLineRunner{
 
 	@Autowired
 	private VirementRepository virementRepository;
-	
+
 	@Autowired
 	private RepositoryRestConfiguration repositoryRestConfiguration;
-	
-	
-	
+
 	public static void main(String[] args) {
 		SpringApplication.run(MicroService1Application.class, args);
 	}
 
-	
-	
-	
-	
 	@Override
 	public void run(String... args) throws Exception {
 		repositoryRestConfiguration.exposeIdsFor(Client.class);
@@ -84,66 +78,70 @@ public class MicroService1Application implements CommandLineRunner{
 		repositoryRestConfiguration.exposeIdsFor(CompteEpargne.class);
 
 		repositoryRestConfiguration.exposeIdsFor(RechargeTelephone.class);
- 
+
 		repositoryRestConfiguration.exposeIdsFor(Virement.class);
 		adminRepository.save(new Admin("dafali", "youssef", "heisenberg", "123456"));
-		BCryptPasswordEncoder bcp=new BCryptPasswordEncoder();
-		Client client=new Client("elatrouz", "ahmed", "aelatrouz@gmailcom","0632302864","homme");
-		Client client2=new Client("dafali", "youssef", "dafali@email.com","0693220509","homme");
-		Client client3=new Client("Daoufa", "abderahman", "daufa@email.com","066666666","homme");
-		Client client4=new Client("Tazi", "Karima", "tazi@email.com","0555555555","femme");
-		
+		BCryptPasswordEncoder bcp = new BCryptPasswordEncoder();
+
+		Client client = new Client("Elatrouz", "ahmed", "elatrouz@email.com", "0698785645", "homme", false,
+				"22/12/1998", "marocain", "maroc", "etudiant", "etudiant", "EE8888", "marrakech", "", "");
+		Client client2 = new Client("Dafai", "youssef", "elatrouz@email.com", "000000000", "homme", false, "22/12/1998",
+				"marocain", "maroc", "etudiant", "etudiant", "FF7777", "marrakech", "", "");
+		Client client3 = new Client("khalid", "hamza", "khalid@email.com", "0698785645", "homme", false, "02/02/1992",
+				"marocain", "maroc", "ingenieur", "ingenieur", "EE9999", "casa", "", "");
+		Client client4 = new Client("Tazi", "sara", "tazi@email.com", "05555555", "femme", false, "22/12/1998",
+				"marocain", "maroc", "medecine", "medecine", "EE8888", "marrakech", "", "");
+
 		clientRepository.save(client);
 		clientRepository.save(client2);
 		clientRepository.save(client3);
 		clientRepository.save(client4);
-		compteRepository.save(new CompteEpargne( new Date(), 100.0, client, 0.1));
-		compteRepository.save(new CompteCourant( new Date(), 15000.0, client, 0.3));
+		compteRepository.save(new CompteEpargne(new Date(), 100.0, client, 0.1));
+		compteRepository.save(new CompteCourant(new Date(), 15000.0, client, 0.3));
 
-		Compte c1=compteRepository.findById(2l).orElse(null);
-		Compte c2=compteRepository.findById(1l).orElse(null);
-		Virement virement=new Virement(c1, c2, 3500.00);
+		Compte c1 = compteRepository.findById(2l).orElse(null);
+		Compte c2 = compteRepository.findById(1l).orElse(null);
+		Virement virement = new Virement(c1, c2, 3500.00);
 		virementRepository.save(virement);
 
-		compteRepository.save(new CompteEpargne( new Date(), 150.0, client2, 0.9));
-		compteRepository.save(new CompteCourant( new Date(), 20000.0, client2, 0.5));
+		compteRepository.save(new CompteEpargne(new Date(), 150.0, client2, 0.9));
+		compteRepository.save(new CompteCourant(new Date(), 20000.0, client2, 0.5));
 
-		Compte compte=iClientService.consulterCompte(1l);
-		Compte compte2=iClientService.consulterCompte(2l);
-		//System.out.println(compte);
-		iClientService.virement(compte.getNumCompte(),compte2.getNumCompte(), 12.0);
+		Compte compte = iClientService.consulterCompte(1l);
+		Compte compte2 = iClientService.consulterCompte(2l);
+		// System.out.println(compte);
+		iClientService.virement(compte.getNumCompte(), compte2.getNumCompte(), 12.0);
 		iClientService.rechargeTelephone(compte.getNumCompte(), "0632302864", 20.0);
-		
-		
+
 		Agence agence = agenceRepository.save(new Agence("ebank", "rue M6"));
-		Agence agence2 = agenceRepository.save(new Agence("ebank2", "rue M5")); 
+		Agence agence2 = agenceRepository.save(new Agence("ebank2", "rue M5"));
 		Agent ag1 = agentRepository.save(new Agent("jane", "patric", agence));
 		Agent ag2 = agentRepository.save(new Agent("tribiani", "joe", agence2));
 		Agent ag3 = agentRepository.save(new Agent("bing", "chandler", agence2));
-		
-		//iAdminService.changeAgence(agence, ag3);
-		
-		
-		Role role1=new Role();
+
+		// iAdminService.changeAgence(agence, ag3);
+
+		Role role1 = new Role();
 		role1.setRole("ADMIN");
-		
-		Role role2=new Role();
+
+		Role role2 = new Role();
 		role2.setRole("USER");
-		
+
 		roleRepository.save(role1);
 		roleRepository.save(role2);
-		User user1=new User();
+		User user1 = new User();
 		user1.setUsername("client1");
 		user1.setPassword(bcp.encode("000"));
 		user1.setActive(true);
 		user1.addRole(role2);
 		userRepository.save(user1);
-		
-		User user2=new User();
+
+		User user2 = new User();
 		user2.setUsername("admin");
 		user2.setPassword(bcp.encode("123"));
 		user2.setActive(true);
-		user2.addRole(role1);user2.addRole(role2);
+		user2.addRole(role1);
+		user2.addRole(role2);
 		userRepository.save(user2);
 	}
 
