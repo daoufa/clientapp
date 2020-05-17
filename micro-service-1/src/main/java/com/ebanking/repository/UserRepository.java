@@ -6,9 +6,10 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 
 import com.ebanking.model.User;
 
-@CrossOrigin("http://localhost:4200")
+@CrossOrigin("*")
 @RepositoryRestResource
 public interface UserRepository extends JpaRepository<User,Long> {
 
+User findByUsername(String username);
 
 }

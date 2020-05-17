@@ -44,12 +44,16 @@ public class Virement {
 		
 		super();
 		this.montant = montant;
-		//this.compte = compte;
+		this.compte = compte;
 		this.destinataireCompte=dest;
 	}
 
-	
-
+	public Long getCompteId() {
+		return this.compte.getNumCompte();
+	}
+	public Long getDestCompteId() {
+		return this.destinataireCompte.getNumCompte();
+	}
 	
 
 }

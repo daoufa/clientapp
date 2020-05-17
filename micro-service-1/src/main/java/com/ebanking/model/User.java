@@ -8,10 +8,13 @@ import javax.persistence.*;
 import javax.persistence.ManyToMany;
 import javax.validation.constraints.NotEmpty;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonSetter;
+
 import java.util.ArrayList;
 import java.util.List;
 
-@Data
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
@@ -44,5 +47,37 @@ public class User {
 		}
 		roles.add(role1);
 
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+	@JsonIgnore
+	public String getPassword() {
+		return password;
+	}
+	@JsonSetter
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public Boolean getActive() {
+		return active;
+	}
+
+	public void setActive(Boolean active) {
+		this.active = active;
+	}
+
+	public List<Role> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(List<Role> roles) {
+		this.roles = roles;
 	}
 }

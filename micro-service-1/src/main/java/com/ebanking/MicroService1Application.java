@@ -35,6 +35,7 @@ import com.ebanking.repository.VirementRepository;
 import com.ebanking.service.IAdminService;
 import com.ebanking.service.IBanqueService;
 import com.ebanking.service.IClientService;
+import com.ebanking.service.IUserService;
 
 @SpringBootApplication
 @EnableAutoConfiguration
@@ -52,6 +53,8 @@ public class MicroService1Application implements CommandLineRunner{
 	private IClientService iClientService;
 	@Autowired
 	private IAdminService iAdminService;
+	@Autowired
+	private IUserService iUserService;
 	
 	@Autowired 
 	private AgentRepository agentRepository;
@@ -119,7 +122,7 @@ public class MicroService1Application implements CommandLineRunner{
 		//iAdminService.changeAgence(agence, ag3);
 		
 		
-		Role role1=new Role();
+		/*Role role1=new Role();
 		role1.setRole("ADMIN");
 		
 		Role role2=new Role();
@@ -132,14 +135,23 @@ public class MicroService1Application implements CommandLineRunner{
 		user1.setPassword(bcp.encode("000"));
 		user1.setActive(true);
 		user1.addRole(role2);
-		userRepository.save(user1);
+		iUserService.saveUser(user1);
 		
 		User user2=new User();
 		user2.setUsername("admin");
 		user2.setPassword(bcp.encode("123"));
 		user2.setActive(true);
 		user2.addRole(role1);user2.addRole(role2);
-		userRepository.save(user2);
+		userRepository.save(user2);*/
+		iUserService.saveUser(new User("client1","123456",true,null));
+		iUserService.saveUser(new User("admin","123456",true,null));
+		iUserService.saveRole(new Role("ADMIN", null));
+		iUserService.saveRole(new Role("CLIENT", null));
+		
+		iUserService.addRoleToUser("admin", "ADMIN");
+		iUserService.addRoleToUser("admin", "CLIENT");
+		iUserService.addRoleToUser("client1", "CLIENT");
+		
 	}
 
 }
