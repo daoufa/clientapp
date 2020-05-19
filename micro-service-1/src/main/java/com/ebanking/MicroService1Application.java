@@ -56,7 +56,7 @@ public class MicroService1Application implements CommandLineRunner {
 	@Autowired
 	private IUserService iUserService;
 	
-
+	@Autowired
 	private AgentRepository agentRepository;
 	@Autowired
 	private AgenceRepository agenceRepository;
@@ -86,7 +86,7 @@ public class MicroService1Application implements CommandLineRunner {
 		adminRepository.save(new Admin("dafali", "youssef", "heisenberg", "123456"));
 		BCryptPasswordEncoder bcp = new BCryptPasswordEncoder();
 
-	/*	Client client = new Client("Elatrouz", "ahmed", "elatrouz@email.com", "0698785645", "homme", false,
+		Client client = new Client("Elatrouz", "ahmed", "elatrouz@email.com", "0698785645", "homme", false,
 				"22/12/1998", "marocain", "maroc", "etudiant", "etudiant", "EE8888", "marrakech", "", "");
 		Client client2 = new Client("Dafai", "youssef", "elatrouz@email.com", "000000000", "homme", false, "22/12/1998",
 				"marocain", "maroc", "etudiant", "etudiant", "FF7777", "marrakech", "", "");
@@ -121,8 +121,8 @@ public class MicroService1Application implements CommandLineRunner {
 		Agent ag1 = agentRepository.save(new Agent("jane", "patric", agence));
 		Agent ag2 = agentRepository.save(new Agent("tribiani", "joe", agence2));
 		Agent ag3 = agentRepository.save(new Agent("bing", "chandler", agence2));
-*/
-		//iAdminService.changeAgence(agence, ag3);
+
+		iAdminService.changeAgence(agence, ag3);
 		
 		
 
