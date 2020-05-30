@@ -2,6 +2,7 @@ package com.ebanking.service;
 
 import java.util.ArrayList;
 
+
 import java.util.Iterator;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,8 +11,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import com.ebanking.model.Client;
 import com.ebanking.model.Compte;
@@ -70,9 +69,9 @@ public class ClientServiceImpl implements IClientService {
 		retirer(numCpte1, montant);
 		verser(numCpte2, montant); 
 		Compte compte1=consulterCompte(numCpte1);
-		Compte compte2=consulterCompte(numCpte2);
-		Virement v=new Virement(compte1,compte2,montant) ;
-		virementRepository.save(v);
+		//Compte compte2=consulterCompte(numCpte2);
+		//Virement v=new Virement(compte1,compte2,montant) ;
+		//virementRepository.save(v);
 
 	}
 
@@ -96,7 +95,7 @@ public class ClientServiceImpl implements IClientService {
 		if(cpt instanceof CompteCourant)
 			facilitesCaisse=((CompteCourant)cpt).getDecouvert();
 		if(cpt.getSolde()+facilitesCaisse<montant)
-			throw new RuntimeException("Solde insuffisanr");
+			throw new RuntimeException("Solde insuffisant");
 		cpt.setSolde(cpt.getSolde()-montant);
 		compteRepository.save(cpt);
 		

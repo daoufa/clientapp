@@ -113,8 +113,8 @@ public class MicroService1Application implements CommandLineRunner {
 		Compte compte = iClientService.consulterCompte(1l);
 		Compte compte2 = iClientService.consulterCompte(2l);
 		// System.out.println(compte);
-		iClientService.virement(compte.getNumCompte(), compte2.getNumCompte(), 12.0);
-		iClientService.rechargeTelephone(compte.getNumCompte(), "0632302864", 20.0);
+		//iClientService.virement(compte.getNumCompte(), compte2.getNumCompte(), 12.0);
+		//iClientService.rechargeTelephone(compte.getNumCompte(), "0632302864", 20.0);
 
 		Agence agence = agenceRepository.save(new Agence("ebank", "rue M6"));
 		Agence agence2 = agenceRepository.save(new Agence("ebank2", "rue M5"));

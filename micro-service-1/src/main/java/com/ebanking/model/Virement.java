@@ -32,9 +32,12 @@ public class Virement {
 	private Long numero;
 	private Date date;
 	private double montant;
+	
 	@ManyToOne
 	@JoinColumn(name = "NUM_CPTE")
 	private Compte compte;
+	
+	
 	@ManyToOne
 	@JoinColumn(name = "NUM_CPTE_DEST")
 	Compte destinataireCompte;

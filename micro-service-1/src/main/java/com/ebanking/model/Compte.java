@@ -36,15 +36,16 @@ import lombok.ToString;
 @Entity
 @ToString
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "TYPE_CPTE",
 discriminatorType = DiscriminatorType.STRING,length = 2 )
-@JsonIdentityInfo(
-		   generator = ObjectIdGenerators.PropertyGenerator.class,
-		   property = "numCompte")
-@JsonIgnoreProperties({ "virements", "rechargeTelephones" })
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "type")
+@JsonSubTypes({
+    @JsonSubTypes.Type(value=CompteCourant.class, name="cc"),
+    @JsonSubTypes.Type(value=CompteEpargne.class, name="ce")
+})
+@JsonIgnoreProperties({"virementsIn","virementsOut","rechargeTelephones"})
 public abstract class Compte  {
 	
 	@Id 
@@ -52,12 +53,18 @@ public abstract class Compte  {
 	private Long numCompte;
 	private Date dateCreation;
 	private double solde;
+	private String type;
 	@ManyToOne
 	@JoinColumn(name = "CODE_CLT" )
 	private Client client;
 	
 	@OneToMany(mappedBy = "compte")
-	private Collection<Virement> virements;
+	private Collection<Virement> virementsOut;
+	
+	
+	@OneToMany(mappedBy = "destinataireCompte")
+	private Collection<Virement> virementsIn;
+	
 	
 	@OneToMany(mappedBy = "compte")
 	private Collection<RechargeTelephone> rechargeTelephones;
@@ -68,8 +75,23 @@ public abstract class Compte  {
 		this.dateCreation = dateCreation;
 		this.solde = solde;
 		this.client = client;
-		if(this instanceof CompteEpargne) isEpargne=true;
-		else isEpargne=false;
+		if(this instanceof CompteEpargne) { isEpargne=true;type="ce";}
+		else {isEpargne=false;type="cc";}
+	}
+
+	public Compte(Long numCompte, Date dateCreation, double solde, Client client, Collection<Virement> virementsOut,
+			Collection<Virement> virementsIn, Collection<RechargeTelephone> rechargeTelephones, boolean isEpargne) {
+		super();
+		this.numCompte = numCompte;
+		this.dateCreation = dateCreation;
+		this.solde = solde;
+		this.client = client;
+		this.virementsOut = virementsOut;
+		this.virementsIn = virementsIn;
+		this.rechargeTelephones = rechargeTelephones;
+		this.isEpargne = isEpargne;
+		if(this instanceof CompteEpargne) { isEpargne=true;type="ce";}
+		else {isEpargne=false;type="cc";}
 	}
 	
 
