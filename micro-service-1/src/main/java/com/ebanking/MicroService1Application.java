@@ -83,7 +83,7 @@ public class MicroService1Application implements CommandLineRunner {
 		repositoryRestConfiguration.exposeIdsFor(RechargeTelephone.class);
 
 		repositoryRestConfiguration.exposeIdsFor(Virement.class);
-		adminRepository.save(new Admin("dafali", "youssef", "heisenberg", "123456"));
+		/*adminRepository.save(new Admin("dafali", "youssef", "heisenberg", "123456"));
 		BCryptPasswordEncoder bcp = new BCryptPasswordEncoder();
 
 		Client client = new Client("Elatrouz", "ahmed", "elatrouz@email.com", "0698785645", "homme", false,
@@ -133,7 +133,7 @@ public class MicroService1Application implements CommandLineRunner {
 		
 		iUserService.addRoleToUser("admin", "ADMIN");
 		iUserService.addRoleToUser("admin", "CLIENT");
-		iUserService.addRoleToUser("client1", "CLIENT");
+		iUserService.addRoleToUser("client1", "CLIENT");*/
 		
 
 	}

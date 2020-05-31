@@ -15,6 +15,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.AllArgsConstructor;
@@ -57,6 +58,10 @@ public class Virement {
 	public Long getDestCompteId() {
 		return this.destinataireCompte.getNumCompte();
 	}
-	
+	@JsonGetter
+	private long getClientId() {
+		
+		return compte.getClient().getCode();
+	}
 
 }

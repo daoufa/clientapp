@@ -25,7 +25,7 @@ public class CompteEpargne extends Compte  {
 
 	private double tauxInterets;
 	public CompteEpargne( Date dateCreation, double solde, Client client,double tauxInterets) {
-		super( dateCreation, solde, client);
+		super( dateCreation, solde, client,"ce");
 		this.tauxInterets=tauxInterets;
 	}
 

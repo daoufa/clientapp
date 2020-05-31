@@ -22,6 +22,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import org.springframework.beans.factory.annotation.Required;
+
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -53,6 +55,7 @@ public abstract class Compte  {
 	private Long numCompte;
 	private Date dateCreation;
 	private double solde;
+	
 	private String type;
 	@ManyToOne
 	@JoinColumn(name = "CODE_CLT" )
@@ -70,16 +73,16 @@ public abstract class Compte  {
 	private Collection<RechargeTelephone> rechargeTelephones;
 	private boolean isEpargne;
 	
-	public Compte( Date dateCreation, double solde, Client client) {
+	public Compte( Date dateCreation, double solde, Client client,String type) {
 		super();
 		this.dateCreation = dateCreation;
 		this.solde = solde;
 		this.client = client;
-		if(this instanceof CompteEpargne) { isEpargne=true;type="ce";}
-		else {isEpargne=false;type="cc";}
+		if(type=="ce") { isEpargne=true;}
+		else {isEpargne=false;}
 	}
 
-	public Compte(Long numCompte, Date dateCreation, double solde, Client client, Collection<Virement> virementsOut,
+	public Compte(Long numCompte, Date dateCreation, double solde,String type, Client client, Collection<Virement> virementsOut,
 			Collection<Virement> virementsIn, Collection<RechargeTelephone> rechargeTelephones, boolean isEpargne) {
 		super();
 		this.numCompte = numCompte;
@@ -89,9 +92,10 @@ public abstract class Compte  {
 		this.virementsOut = virementsOut;
 		this.virementsIn = virementsIn;
 		this.rechargeTelephones = rechargeTelephones;
-		this.isEpargne = isEpargne;
-		if(this instanceof CompteEpargne) { isEpargne=true;type="ce";}
-		else {isEpargne=false;type="cc";}
+		this.type=type;
+		
+		if(type=="ce") { isEpargne=true;}
+		else {isEpargne=false;}
 	}
 	
 

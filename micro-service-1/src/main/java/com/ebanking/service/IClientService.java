@@ -30,7 +30,7 @@ public interface IClientService {
 	
 	
 	public void virement(Long numCpte1,Long numCpte2,double montant);
-	public void rechargeTelephone(Long numCpte,String numTel,double montant);
+	public void rechargeTelephone(Long numCpte,String numTel,double montant,Date date);
 	
 
 }

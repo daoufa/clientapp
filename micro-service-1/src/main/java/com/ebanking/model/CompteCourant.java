@@ -23,7 +23,7 @@ public class CompteCourant extends Compte {
 	
 	private double decouvert;
 	public CompteCourant( Date dateCreation, double solde, Client client,double decouvert) {
-		super(dateCreation, solde, client);
+		super(dateCreation, solde, client,"cc");
 		this.decouvert=decouvert;
 	}
 	

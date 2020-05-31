@@ -1,8 +1,7 @@
 package com.ebanking.service;
 
 import java.util.ArrayList;
-
-
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +19,7 @@ import com.ebanking.model.RechargeTelephone;
 import com.ebanking.model.Virement;
 import com.ebanking.repository.ClientRepository;
 import com.ebanking.repository.CompteRepository;
+import com.ebanking.repository.RechargeTelephoneRepository;
 import com.ebanking.repository.VirementRepository;
 @Service
 @Transactional
@@ -32,6 +32,8 @@ public class ClientServiceImpl implements IClientService {
 	private ClientRepository clientRepository;
 	@Autowired
 	private VirementRepository virementRepository;
+	@Autowired
+	private RechargeTelephoneRepository rechargeTelephoneRepository;
 	
 	@Override
 	public Compte consulterCompte(Long numCpte) {
@@ -68,10 +70,7 @@ public class ClientServiceImpl implements IClientService {
 			throw new RuntimeException("le virement est vers votre compte!");
 		retirer(numCpte1, montant);
 		verser(numCpte2, montant); 
-		Compte compte1=consulterCompte(numCpte1);
-		//Compte compte2=consulterCompte(numCpte2);
-		//Virement v=new Virement(compte1,compte2,montant) ;
-		//virementRepository.save(v);
+		
 
 	}
 
@@ -102,11 +101,10 @@ public class ClientServiceImpl implements IClientService {
 	}
 
 	@Override
-	public void rechargeTelephone(Long numCpte, String numTel,double montant) {
-		/*retirer(numCpte, montant);
-		Compte compte=consulterCompte(numCpte);
-		OperationRepository.save(new RechargeTelephone(montant, compte, numTel));
-		//TODO:comment envoyer une recharge?*/
+	public void rechargeTelephone(Long numCpte, String numTel,double montant,Date date) {
+		retirer(numCpte, montant);
+		
+		//TODO:comment envoyer une recharge?
 	}
 
 
