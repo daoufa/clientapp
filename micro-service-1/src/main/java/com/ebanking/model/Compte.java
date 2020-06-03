@@ -25,6 +25,7 @@ import javax.persistence.OneToMany;
 import org.springframework.beans.factory.annotation.Required;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -96,6 +97,11 @@ public abstract class Compte  {
 		
 		if(type=="ce") { isEpargne=true;}
 		else {isEpargne=false;}
+	}
+	
+	@JsonGetter
+	public String clientNom() {
+		return this.client.getNom()+" "+this.client.getPrenom();
 	}
 	
 
