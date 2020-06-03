@@ -95,7 +95,7 @@ public class ClientServiceImpl implements IClientService {
 			facilitesCaisse=((CompteCourant)cpt).getDecouvert();
 		if(cpt.getSolde()+facilitesCaisse<montant)
 			throw new RuntimeException("Solde insuffisant");
-		cpt.setSolde(cpt.getSolde()-montant);
+		cpt.setSolde(cpt.getSolde()-(montant+facilitesCaisse));
 		compteRepository.save(cpt);
 		
 	}
