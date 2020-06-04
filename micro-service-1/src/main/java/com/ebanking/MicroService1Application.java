@@ -83,9 +83,9 @@ public class MicroService1Application implements CommandLineRunner {
 		repositoryRestConfiguration.exposeIdsFor(RechargeTelephone.class);
 
 		repositoryRestConfiguration.exposeIdsFor(Virement.class);
-		/*adminRepository.save(new Admin("dafali", "youssef", "heisenberg", "123456"));
+		adminRepository.save(new Admin("dafali", "youssef", "heisenberg", "123456"));
 		BCryptPasswordEncoder bcp = new BCryptPasswordEncoder();
-
+/*
 		Client client = new Client("Elatrouz", "ahmed", "elatrouz@email.com", "0698785645", "homme", false,
 				"22/12/1998", "marocain", "maroc", "etudiant", "etudiant", "EE8888", "marrakech", "", "");
 		Client client2 = new Client("Dafai", "youssef", "elatrouz@email.com", "000000000", "homme", false, "22/12/1998",
@@ -101,18 +101,13 @@ public class MicroService1Application implements CommandLineRunner {
 		clientRepository.save(client4);
 		compteRepository.save(new CompteEpargne(new Date(), 100.0, client, 0.1));
 		compteRepository.save(new CompteCourant(new Date(), 15000.0, client, 0.3));
-
 		Compte c1 = compteRepository.findById(2l).orElse(null);
 		Compte c2 = compteRepository.findById(1l).orElse(null);
-		Virement virement = new Virement(c1, c2, 3500.00);
-		virementRepository.save(virement);
-
 		compteRepository.save(new CompteEpargne(new Date(), 150.0, client2, 0.9));
 		compteRepository.save(new CompteCourant(new Date(), 20000.0, client2, 0.5));
-
 		Compte compte = iClientService.consulterCompte(1l);
 		Compte compte2 = iClientService.consulterCompte(2l);
-		// System.out.println(compte);
+		
 		//iClientService.virement(compte.getNumCompte(), compte2.getNumCompte(), 12.0);
 		//iClientService.rechargeTelephone(compte.getNumCompte(), "0632302864", 20.0);
 
