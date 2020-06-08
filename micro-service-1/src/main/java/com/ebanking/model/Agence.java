@@ -19,6 +19,7 @@ import lombok.ToString;
 @Entity
 @ToString
 @Data
+@AllArgsConstructor
 @NoArgsConstructor
 public class Agence {
 	
