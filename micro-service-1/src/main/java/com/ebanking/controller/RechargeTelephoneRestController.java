@@ -29,11 +29,9 @@ public class RechargeTelephoneRestController {
 	@Autowired
 	private IClientService iClientService;
 	
-	@GetMapping (value="/RechargeTelephone/compte/{id}")
-	public List<RechargeTelephone> getRechargeTelephoneByCompte(@PathVariable(name="id") Long id){
-		Compte compte = compteRepository.findByNumCompte(id);
-		 return rechargeTelephoneRepository.findByCompte(compte);
-	}
+//	
+
+	
 	
 	@PostMapping (value ="/saveRecharge")
     public RechargeTelephone save(@RequestBody RechargeTelephone r) {
