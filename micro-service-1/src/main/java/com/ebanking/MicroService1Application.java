@@ -79,6 +79,7 @@ public class MicroService1Application implements CommandLineRunner {
 		repositoryRestConfiguration.exposeIdsFor(Compte.class);
 		repositoryRestConfiguration.exposeIdsFor(CompteCourant.class);
 		repositoryRestConfiguration.exposeIdsFor(CompteEpargne.class);
+		repositoryRestConfiguration.exposeIdsFor(Agent.class);
 
 		repositoryRestConfiguration.exposeIdsFor(RechargeTelephone.class);
 
@@ -111,13 +112,14 @@ public class MicroService1Application implements CommandLineRunner {
 		//iClientService.virement(compte.getNumCompte(), compte2.getNumCompte(), 12.0);
 		//iClientService.rechargeTelephone(compte.getNumCompte(), "0632302864", 20.0);
 
-		Agence agence = agenceRepository.save(new Agence("ebank", "rue M6"));
-		Agence agence2 = agenceRepository.save(new Agence("ebank2", "rue M5"));
-		Agent ag1 = agentRepository.save(new Agent("jane", "patric", agence));
-		Agent ag2 = agentRepository.save(new Agent("tribiani", "joe", agence2));
-		Agent ag3 = agentRepository.save(new Agent("bing", "chandler", agence2));
+		Agence agence = agenceRepository.save(new Agence("ebank", "rue M6","Casa"));
+		Agence agence2 = agenceRepository.save(new Agence("ebank2", "rue M5","Marrakech"));
+		Agence agence3 = agenceRepository.save(new Agence("ebank3", "rue salam","tanger"));
+		agentRepository.save(new Agent("Anik", "Habib", "maroc", "casa", "065987456", "habib@email.com", "ff5689", agence));
+		agentRepository.save(new Agent("Tribiani", "Joe", "maroc", "tanger", "060606060", "joe@email.com", "gg546", agence3));
+		agentRepository.save(new Agent("Bing", "cChandler", "maroc", "marrakech", "065987456", "bing@email.com", "hh5445", agence2));
 
-		iAdminService.changeAgence(agence, ag3);
+		//iAdminService.changeAgence(agence, ag3);
 		
 		
 
