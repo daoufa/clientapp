@@ -49,7 +49,7 @@ discriminatorType = DiscriminatorType.STRING,length = 2 )
     @JsonSubTypes.Type(value=CompteEpargne.class, name="ce")
 })
 @JsonIgnoreProperties({"virementsIn","virementsOut","rechargeTelephones"})
-public abstract class Compte  {
+public abstract class Compte  implements Serializable{
 	
 	@Id 
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
