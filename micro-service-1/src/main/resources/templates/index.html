@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+<link
+  rel="stylesheet"
+  href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
+  integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
+  crossorigin="anonymous"
+/>
+<link
+  rel="stylesheet"
+  href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+  integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
+  crossorigin="anonymous"
+/>
+<title>Insert title here</title>
+<link rel="stylesheet" href="css/index.css">
+
+</head>
+<body>
+
+	<div th:replace="nav"></div>
+	
+	
+	<main>
+      <section class="cards">
+        <div class="card" th:each="a:${agences}">
+        <a th:href="@{/index(idagence=${a.id})}">
+          <div class="card__image-container">
+            <img
+              src="imgs/agences.jpg"
+              alt="Detailed image description would go here."
+            />
+          </div>
+          <div class="card__content">
+            <p class="card__title text--medium">
+              <spam th:text="${a.adresse}"></spam>
+            </p>
+            <div class="card__info">
+              <p class="text--medium">nombre d'agents : <spam style="color:red" th:text="${a.agents.size()}"></spam></p>
+              <p class="card__price text--medium"><spam th:text="${a.nom}"></spam></p>
+            </div>
+          </div>
+          </a>
+        </div>
+        
+        <!-- <div class="card">
+          <div class="card__image-container">
+            <img
+              src="https://images.unsplash.com/photo-1519681393784-d120267933ba?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1200&q=80"
+              alt="Detailed image description would go here."
+            />
+          </div>
+          <div class="card__content">
+            <p class="card__title text--medium">
+              Here's the Title of an Awesome Course
+            </p>
+            <div class="card__info">
+              <p class="text--medium">30 Min</p>
+              <p class="card__price text--medium">Free</p>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card__image-container">
+            <img
+              src="https://images.unsplash.com/photo-1473283147055-e39c51463929?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1200&q=80"
+              alt="Detailed image description would go here."
+            />
+          </div>
+          <div class="card__content">
+            <p class="card__title text--medium">
+              Here's the Title of an Awesome Course
+            </p>
+            <div class="card__info">
+              <p class="text--medium">30 Min</p>
+              <p class="card__price text--medium">Free</p>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card__image-container">
+            <img
+              src="https://images.unsplash.com/photo-1482784160316-6eb046863ece?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1200&q=80"
+              alt="Detailed image description would go here."
+            />
+          </div>
+          <div class="card__content">
+            <p class="card__title text--medium">
+              Here's the Title of an Awesome Course
+            </p>
+            <div class="card__info">
+              <p class="text--medium">30 Min</p>
+              <p class="card__price text--medium">Free</p>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card__image-container">
+            <img
+              src="https://images.unsplash.com/photo-1470104240373-bc1812eddc9f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1200&q=80"
+              alt="Detailed image description would go here."
+            />
+          </div>
+          <div class="card__content">
+            <p class="card__title text--medium">
+              Here's the Title of an Awesome Course
+            </p>
+            <div class="card__info">
+              <p class="text--medium">30 Min</p>
+              <p class="card__price text--medium">Free</p>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card__image-container">
+            <img
+              src="https://images.unsplash.com/photo-1486870591958-9b9d0d1dda99?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1200&q=80"
+              alt="Detailed image description would go here."
+            />
+          </div>
+          <div class="card__content">
+            <p class="card__title text--medium">
+              Here's the Title of an Awesome Course
+            </p>
+            <div class="card__info">
+              <p class="text--medium">30 Min</p>
+              <p class="card__price text--medium">Free</p>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card__image-container">
+            <img
+              src="https://images.unsplash.com/photo-1534143046043-44af3469836b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1200&q=80"
+              alt="Detailed image description would go here."
+            />
+          </div>
+          <div class="card__content">
+            <p class="card__title text--medium">
+              Here's the Title of an Awesome Course
+            </p>
+            <div class="card__info">
+              <p class="text--medium">30 Min</p>
+              <p class="card__price text--medium">Free</p>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card__image-container">
+            <img
+              src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1200&q=80"
+              alt="Detailed image description would go here."
+            />
+          </div>
+          <div class="card__content">
+            <p class="card__title text--medium">
+              Here's the Title of an Awesome Course
+            </p>
+            <div class="card__info">
+              <p class="text--medium">30 Min</p>
+              <p class="card__price text--medium">Free</p>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card__image-container">
+            <img
+              src="https://images.unsplash.com/photo-1465056836041-7f43ac27dcb5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1200&q=80"
+              alt="Detailed image description would go here."
+            />
+          </div>
+          <div class="card__content">
+            <p class="card__title text--medium">
+              Here's the Title of an Awesome Course
+            </p>
+            <div class="card__info">
+              <p class="text--medium">30 Min</p>
+              <p class="card__price text--medium">Free</p>
+            </div>
+          </div>
+        </div> -->
+      </section>
+    </main>
+	
+	
+	<script
+      src="http://code.jquery.com/jquery-3.3.1.min.js"
+      integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+      integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
+      integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
+      crossorigin="anonymous"
+    ></script>
+</body>
+</html>

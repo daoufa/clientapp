@@ -116,7 +116,7 @@ public class MicroService1Application implements CommandLineRunner {
 		Agence agence2 = agenceRepository.save(new Agence("ebank2", "rue M5","Marrakech"));
 		Agence agence3 = agenceRepository.save(new Agence("ebank3", "rue salam","tanger"));
 		agentRepository.save(new Agent("Anik", "Habib", "maroc", "casa", "065987456", "habib@email.com", "ff5689", agence));
-		agentRepository.save(new Agent("Tribiani", "Joe", "maroc", "tanger", "060606060", "joe@email.com", "gg546", agence3));
+		agentRepository.save(new Agent("Tribiani", "Joe", "maroc", "tanger", "060606060", "joe@email.com", "gg546", agence));
 		agentRepository.save(new Agent("Bing", "cChandler", "maroc", "marrakech", "065987456", "bing@email.com", "hh5445", agence2));
 
 		//iAdminService.changeAgence(agence, ag3);
