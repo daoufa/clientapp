@@ -17,7 +17,7 @@
   crossorigin="anonymous"
 />
 <title>Insert title here</title>
-<link rel="stylesheet" href="css/index.css">
+<link rel="stylesheet" href="css/agence.css">
 
 </head>
 <body>
@@ -26,164 +26,42 @@
 	
 	
 	<main>
-      <section class="cards">
-        <div class="card" th:each="a:${agences}">
-        <a th:href="@{/index(idagence=${a.id})}">
-          <div class="card__image-container">
-            <img
-              src="imgs/agences.jpg"
-              alt="Detailed image description would go here."
-            />
-          </div>
-          <div class="card__content">
-            <p class="card__title text--medium">
-              <spam th:text="${a.adresse}"></spam>
-            </p>
-            <div class="card__info">
-              <p class="text--medium">nombre d'agents : <spam style="color:red" th:text="${a.agents.size()}"></spam></p>
-              <p class="card__price text--medium"><spam th:text="${a.nom}"></spam></p>
-            </div>
-          </div>
-          </a>
-        </div>
-        
-        <!-- <div class="card">
-          <div class="card__image-container">
-            <img
-              src="https://images.unsplash.com/photo-1519681393784-d120267933ba?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1200&q=80"
-              alt="Detailed image description would go here."
-            />
-          </div>
-          <div class="card__content">
-            <p class="card__title text--medium">
-              Here's the Title of an Awesome Course
-            </p>
-            <div class="card__info">
-              <p class="text--medium">30 Min</p>
-              <p class="card__price text--medium">Free</p>
-            </div>
-          </div>
-        </div>
-        <div class="card">
-          <div class="card__image-container">
-            <img
-              src="https://images.unsplash.com/photo-1473283147055-e39c51463929?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1200&q=80"
-              alt="Detailed image description would go here."
-            />
-          </div>
-          <div class="card__content">
-            <p class="card__title text--medium">
-              Here's the Title of an Awesome Course
-            </p>
-            <div class="card__info">
-              <p class="text--medium">30 Min</p>
-              <p class="card__price text--medium">Free</p>
-            </div>
-          </div>
-        </div>
-        <div class="card">
-          <div class="card__image-container">
-            <img
-              src="https://images.unsplash.com/photo-1482784160316-6eb046863ece?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1200&q=80"
-              alt="Detailed image description would go here."
-            />
-          </div>
-          <div class="card__content">
-            <p class="card__title text--medium">
-              Here's the Title of an Awesome Course
-            </p>
-            <div class="card__info">
-              <p class="text--medium">30 Min</p>
-              <p class="card__price text--medium">Free</p>
-            </div>
-          </div>
-        </div>
-        <div class="card">
-          <div class="card__image-container">
-            <img
-              src="https://images.unsplash.com/photo-1470104240373-bc1812eddc9f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1200&q=80"
-              alt="Detailed image description would go here."
-            />
-          </div>
-          <div class="card__content">
-            <p class="card__title text--medium">
-              Here's the Title of an Awesome Course
-            </p>
-            <div class="card__info">
-              <p class="text--medium">30 Min</p>
-              <p class="card__price text--medium">Free</p>
-            </div>
-          </div>
-        </div>
-        <div class="card">
-          <div class="card__image-container">
-            <img
-              src="https://images.unsplash.com/photo-1486870591958-9b9d0d1dda99?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1200&q=80"
-              alt="Detailed image description would go here."
-            />
-          </div>
-          <div class="card__content">
-            <p class="card__title text--medium">
-              Here's the Title of an Awesome Course
-            </p>
-            <div class="card__info">
-              <p class="text--medium">30 Min</p>
-              <p class="card__price text--medium">Free</p>
-            </div>
-          </div>
-        </div>
-        <div class="card">
-          <div class="card__image-container">
-            <img
-              src="https://images.unsplash.com/photo-1534143046043-44af3469836b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1200&q=80"
-              alt="Detailed image description would go here."
-            />
-          </div>
-          <div class="card__content">
-            <p class="card__title text--medium">
-              Here's the Title of an Awesome Course
-            </p>
-            <div class="card__info">
-              <p class="text--medium">30 Min</p>
-              <p class="card__price text--medium">Free</p>
-            </div>
-          </div>
-        </div>
-        <div class="card">
-          <div class="card__image-container">
-            <img
-              src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1200&q=80"
-              alt="Detailed image description would go here."
-            />
-          </div>
-          <div class="card__content">
-            <p class="card__title text--medium">
-              Here's the Title of an Awesome Course
-            </p>
-            <div class="card__info">
-              <p class="text--medium">30 Min</p>
-              <p class="card__price text--medium">Free</p>
-            </div>
-          </div>
-        </div>
-        <div class="card">
-          <div class="card__image-container">
-            <img
-              src="https://images.unsplash.com/photo-1465056836041-7f43ac27dcb5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1200&q=80"
-              alt="Detailed image description would go here."
-            />
-          </div>
-          <div class="card__content">
-            <p class="card__title text--medium">
-              Here's the Title of an Awesome Course
-            </p>
-            <div class="card__info">
-              <p class="text--medium">30 Min</p>
-              <p class="card__price text--medium">Free</p>
-            </div>
-          </div>
-        </div> -->
-      </section>
+		<section class="cards">
+	        <div class="card" >
+	          <div class="card__image-container">
+	            <img
+	              src="imgs/agences.jpg"
+	              alt="Detailed image description would go here."
+	            />
+	          </div>
+	          <div class="card__content">
+	            <p class="card__title text--medium">
+	              <!-- <spam th:text="${a.adresse}"></spam> -->
+	            </p>
+	            <div class="card__info">
+	              <form th:action="@{/creerAgence(idagence=${editAgence.id})}" th:object="${editAgence}" method="post">
+	              <h5 class="modal-title" id="#creerAgenceTitle">modifier l'agence d'Id : <spam th:text="${editAgence.id}"></spam></h5>
+	              <div class="container" >
+		        	<div class="form-group form-add" >
+		        		<label for="exampleInputPassword1" style="">Password</label>
+	                   	<input type="text" class="form-control" placeholder="nom *"th:field="*{nom}" />
+	               	</div>
+	               	<div class="form-group form-add">
+		        		<label for="exampleInputPassword1">adresse</label>
+	                   	<input type="text" class="form-control" placeholder="adresse *" th:field="*{adresse}"/>
+	               	</div>
+	               	<div class="form-group form-add">
+		        		<label for="exampleInputPassword1">Ville</label>
+	                   	<input type="text" class="form-control" placeholder="ville *" th:field="*{ville}"/>
+	               	</div>
+	             </div>
+	             <button class="btn btn-secondary" data-dismiss="modal">Close</button>
+		        <button type="submit" class="btn btn-primary">Save changes</button>
+	             </form>
+	            </div>
+	          </div>
+	        </div>
+        </section>
     </main>
 	
 	

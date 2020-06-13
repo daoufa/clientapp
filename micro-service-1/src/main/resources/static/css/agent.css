@@ -8,7 +8,7 @@ body {
   background-color: #303032;
 }
 
-.controle{
+.agence{
 	margin:20px;
 	display:flex;
 	justify-content:center;
@@ -30,59 +30,24 @@ main {
   padding: 60px 0;
 }
 
-.edit{
-	margin:5px;
-	display:flex;
-	justify-content:flex-end;
+.card-title{
+  font-family: "Open Sans", sans-serif;
+  font-size: 18px;
+  color: rgba(0, 136, 169, 1);
 }
-
-.edit a{
-	color:black;
-}
-
-.modal-title{
-	margin-left: 150px;
-	color:white;
-}
-#content{
-	background-color: #24252a;
-	-webkit-box-shadow: 2px 0px 12px 3px rgba(0,0,0,1);
-  -moz-box-shadow: 2px 0px 12px 3px rgba(0,0,0,1);
-  box-shadow: 2px 0px 12px 3px rgba(0,0,0,1);
-}
-
-.form-add label {
-	font-size: 18px;
-  font-weight: 300;
-  line-height: 30px;
-  letter-spacing: 0.5px;
-	color:#eee;
-	display:flex;
-	justify-content:center;
-}
-
-.form-add input {
-  background-color: rgba(50,50,50,0.8);
-  color:#fff;
-}
-
-
-.cta-edit {
-  padding: 3px 12px;
-  margin-left:10px;
-  background-color: rgba(0, 136, 169, 1);
-  border: none;
-  border-radius: 50px;
-  cursor: pointer;
-  transition: background-color 0.3s ease 0s;
-}
-
 .text--medium {
   font-family: "Open Sans", sans-serif;
   font-size: 16px;
   line-height: 20px;
   font-weight: 400;
   color: #ecf0f1;
+}
+
+.text--medium b {
+  font-size: 18px;
+  line-height: 20px;
+  font-weight: 400;
+  color: #888;
 }
 
 .cards {
@@ -92,50 +57,20 @@ main {
   grid-gap: 40px;
 }
 
-.cards a {
-	text-decoration: none;
-}
-
 .card {
-  grid-column-end: span 4;
+  grid-column-end: span 6;
   display: flex;
   flex-direction: column;
   background-color: #39393b;
   cursor: pointer;
   transition: all 0.3s ease 0s;
-  /*-webkit-box-shadow: 2px 0px 12px 4px rgba(59,58,59,1);
-  -moz-box-shadow: 2px 0px 12px 4px rgba(59,58,59,1);
-  box-shadow: 2px 0px 12px 4px rgba(59,58,59,1);*/
 }
 
 .card:hover {
   transform: translateY(-7px);
 }
 
-.card__image-container {
-  width: 100%;
-  padding-top: 56.25%;
-  overflow: hidden;
-  position: relative;
-}
-
-.card__image-container img {
-  width: 100%;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.card__content {
-  padding: 20px;
-}
-
-.card__title {
-  margin-bottom: 20px;
-}
-
-.card__info {
+.card__name {
   display: flex;
   align-self: end;
   align-items: center;

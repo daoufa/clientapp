@@ -13,12 +13,12 @@
             <a class="logo" href="/"><img src="imgs/ebanking.png" alt="logo"></a>
             <nav>
                 <ul class="nav__links">
-                    <li><a href="#">agences</a></li>
-                    <li><a href="#">agents</a></li>
-                    <li><a href="#">param globales</a></li>
+                    <li><a th:href="@{/index}">agences</a></li>
+                    <li><a th:href="@{/agent}">agents</a></li>
+                    <li><a th:href="@{/paramGlobal}">param globales</a></li>
                 </ul>
             </nav>
-            <a class="cta" href="#">Profile</a>
+            <a class="cta" th:href="@{/profile}">Profile</a>
             <p class="menu cta">Menu</p>
         </header>
         <div class="overlay">
