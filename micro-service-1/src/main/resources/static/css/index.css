@@ -23,21 +23,15 @@ body {
   transition: background-color 0.3s ease 0s;
 }
 
+a:link {
+ text-decoration: none;
+}
+
 main {
   display: grid;
   grid-template-columns: 1fr repeat(12, minmax(auto, 60px)) 1fr;
   grid-gap: 40px;
   padding: 60px 0;
-}
-
-.edit{
-	margin:5px;
-	display:flex;
-	justify-content:flex-end;
-}
-
-.edit a{
-	color:black;
 }
 
 .modal-title{
@@ -66,6 +60,15 @@ main {
   color:#fff;
 }
 
+.edit{
+	margin:5px;
+	display:flex;
+	justify-content:flex-end;
+}
+
+.edit a{
+	color:black;
+}
 
 .cta-edit {
   padding: 3px 12px;

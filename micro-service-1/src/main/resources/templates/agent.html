@@ -24,32 +24,176 @@
 
 	<div th:replace="nav"></div>
 	<div class="agence">
-		<a class="cta" ><spam th:text="${agence.nom}"></spam></a>
+		<a class="cta" data-toggle="modal" data-target="#creerAgent">Ajouter un Agent</a>
+		<a class="cta" th:href="@{/editAgence(idagence=${agence.id})}"><spam th:text="${agence.nom}"></spam></a>
+		<a class="cta" th:if="${!isModifier}" th:href="@{/agent(isModifier=true,idagence=${agence.id})}" style="width:250px;text-align:center">Modifier l'Agents</a>
+		<a class="cta bg-success" style="width:250px;text-align:center" th:if="${isModifier}" th:href="@{/agent(isModifier=false,idagence=${agence.id})}">Annuler</a>
 	</div>
+	
+	<!-- Modal -->
+	<div class="modal fade" id="creerAgent" tabindex="-1" role="dialog" aria-labelledby="#creerAgentTitle" aria-hidden="true" >
+		<form th:action="@{/creerAgent(idagence=${agence.id})}" th:object="${nvAgent}" method="post" >
+		  <div class="modal-dialog modal-dialog-centered" role="document" >
+		    <div class="modal-content" id="content">
+		      <div class="modal-header" >
+		        <h5 class="modal-title" id="#creerAgentTitle">Ajouter un Agent</h5>
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          <span aria-hidden="true">&times;</span>
+		        </button>
+		      </div>
+		      <div class="modal-body" >
+	        	<div class="container" >
+		        	<div class="form-group form-add" >
+		        		<label for="nom" >nom</label>
+	                   	<input type="text" id="nom" class="form-control" placeholder="nom *" th:field="*{nom}" />
+	               	</div>
+	               	<div class="form-group form-add" >
+		        		<label for="prenom" >prenom</label>
+	                   	<input type="text" id="prenom" class="form-control" placeholder="prenom *" th:field="*{prenom}" />
+	               	</div>
+	               	<div class="form-group form-add">
+					    <label for="email">Email</label>
+					    <input type="email" id="email" class="form-control" placeholder="nom@example.com" th:field="*{email}">
+					</div>
+					<div class="form-group form-add" >
+		        		<label for="tel" > numero de telephone</label>
+	                   	<input type="text" id="tel" class="form-control" placeholder="tel *" th:field="*{telephone}" />
+	               	</div>
+	               	<div class="form-group form-add">
+		        		<label for="cin">cin</label>
+	                   	<input type="text" id="cin" class="form-control" placeholder="cin *" th:field="*{cin}"/>
+	               	</div>
+	               	<div class="form-group form-add">
+		        		<label for="ville">Ville</label>
+	                   	<input type="text" id="ville" class="form-control" placeholder="ville *" th:field="*{ville}"/>
+	               	</div>
+	             </div>
+		      </div>
+		      <div class="modal-footer">
+		        <button class="btn btn-secondary" data-dismiss="modal">Close</button>
+		        <button type="submit" class="btn btn-primary">Save changes</button>
+		      </div>
+		    </div>
+		  </div>
+		</form>
+	</div>
+	
+	
 	<main>
       <section class="cards">
 		<div class="card mb-3" th:each="a:${agence.agents}">
-		  <div class="row no-gutters">
-		    <div class="col-md-4" >
-		      <img src="imgs/entrepreneur2.jpg" class="card-img" alt="...">
-		    </div>
-		    <div class="col-md-8">
-		      <div class="card-body">
-		      	<div class="card__name">
-			        <h5 class="card-title"><spam th:text="${a.nom}"></spam> <spam th:text="${a.prenom}"></spam></h5>
-			        <p class="card__price text--medium">id : <spam th:text="${a.code}"></spam></p>
+			<div class="edit" th:if="${isModifier}" style="background-color:#303032;margin:0;margin-bottom:10px;">
+				<a class="cta-edit bg-success" data-toggle="modal" data-target="#exampleModal" 
+					th:data-code="${a.code}" th:data-nom="${a.nom}" th:data-prenom="${a.prenom}" th:data-email="${a.email}" 
+					th:data-telephone="${a.telephone}" th:data-cin="${a.cin}" th:data-ville="${a.ville}"><!-- th:href="@{/editAgent(idagent=${a.code})}" -->
+					<i class="fa fa-edit" aria-hidden="true"></i>
+				</a>
+				<a class="cta-edit bg-warning" th:href="@{/signalerAgent(idagent=${a.code})}">
+					<i class="fa fa-flag" aria-hidden="true"></i>
+				</a>
+				<a class="cta-edit bg-danger" th:href="@{/deletAgent(idagent=${a.code})}" onclick="if (confirm('vous voulez supprimer cette agence definitivement ?')) commentDelete(1); return false">
+					<i class="fa fa-trash" aria-hidden="true"></i>
+				</a>
+		  	</div>
+		  	<div class="row no-gutters">
+			    <div class="col-md-4" >
+			      <img src="imgs/entrepreneur2.jpg" class="card-img" alt="...">
 			    </div>
-		        <p class="card-text text--medium"><b>email : </b><spam th:text="${a.email}"></spam><br>
-		        								<b>telephone : </b><spam th:text="${a.telephone}"></spam> <br>
-		        								<b>cin :  </b><spam th:text="${a.cin}"></spam><br>
-		        								<b>ville: </b><spam th:text="${a.ville}"></spam></p>
-		        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+			    <div class="col-md-8">
+			      <div class="card-body">
+			      	<div class="card__name">
+				        <h5 class="card-title"><spam th:text="${a.nom}"></spam> <spam th:text="${a.prenom}"></spam></h5>
+				        <p class="card__price text--medium">id : <spam th:text="${a.code}"></spam></p>
+				    </div>
+			        <p class="card-text text--medium"><b>email : </b><spam th:text="${a.email}"></spam><br>
+			        								<b>telephone : </b><spam th:text="${a.telephone}"></spam> <br>
+			        								<b>cin :  </b><spam th:text="${a.cin}"></spam><br>
+			        								<b>ville: </b><spam th:text="${a.ville}"></spam></p>
+			        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+			      </div>
+		    	</div>
+		  	</div>
+		</div>
+		
+		<!-- model for edit agent  -->
+		<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		 <form th:action="@{/creerAgent(idagence=${agence.id})}" th:object="${nvAgent}" method="post" >
+		  <div class="modal-dialog" role="document">
+		    <div class="modal-content" id="content">
+		    <div class="modal-header" >
+		        <h5 class="modal-title" id="exampleModalLabel">Ajouter un Agent</h5>
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          <span aria-hidden="true">&times;</span>
+		        </button>
+		      </div>
+		      <div class="modal-body" >
+	        	<div class="container" >
+	        		<div class="form-group form-add" >
+		        		<label for="code" >code</label>
+	                   	<input type="text" id="code" class="form-control" placeholder="code *" th:field="*{code}" />
+	               	</div>
+		        	<div class="form-group form-add" >
+		        		<label for="nom" >nom</label>
+	                   	<input type="text" id="nom" class="form-control" placeholder="nom *" th:field="*{nom}" />
+	               	</div>
+	               	<div class="form-group form-add" >
+		        		<label for="prenom" >prenom</label>
+	                   	<input type="text" id="prenom" class="form-control" placeholder="prenom *" th:field="*{prenom}" />
+	               	</div>
+	               	<div class="form-group form-add">
+					    <label for="email">Email</label>
+					    <input type="email" id="email" class="form-control" placeholder="nom@example.com" th:field="*{email}">
+					</div>
+					<div class="form-group form-add" >
+		        		<label for="telephone" > numero de telephone</label>
+	                   	<input type="text" id="telephone" class="form-control" placeholder="tel *" th:field="*{telephone}" />
+	               	</div>
+	               	<div class="form-group form-add">
+		        		<label for="cin">cin</label>
+	                   	<input type="text" id="cin" class="form-control" placeholder="cin *" th:field="*{cin}"/>
+	               	</div>
+	               	<div class="form-group form-add">
+		        		<label for="ville">Ville</label>
+	                   	<input type="text" id="ville" class="form-control" placeholder="ville *" th:field="*{ville}"/>
+	               	</div>
+	             </div>
+	             </div>
+	             <div class="modal-footer">
+			        <button class="btn btn-secondary" data-dismiss="modal">Close</button>
+			        <button type="submit" class="btn btn-primary">Save changes</button>
+			      </div>
+		      </div>
+		    
+		    
+		    
+		    
+		    <!-- 
+		      <div class="modal-header">
+		        <h5 class="modal-title" id="exampleModalLabel"></h5>
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          <span aria-hidden="true">&times;</span>
+		        </button>
+		      </div>
+		      <div class="modal-body">
+		        <form>
+		          <div class="form-group">
+		            <label for="recipient-name" class="col-form-label">Recipient:</label>
+		            <input type="text" class="form-control" id="recipient-name">
+		          </div>
+		          <div class="form-group">
+		            <label for="message-text" class="col-form-label">Message:</label>
+		            <textarea class="form-control" id="message-text"></textarea>
+		          </div>
+		        </form>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+		        <button type="button" class="btn btn-primary">Send message</button>
 		      </div>
 		    </div>
 		  </div>
 		</div>
-		
-		
+		 -->
 	</section>
 	</main>
 	
@@ -69,5 +213,28 @@
       integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
       crossorigin="anonymous"
     ></script>
+    <script >
+    	$('#exampleModal').on('show.bs.modal', function (event) {
+    	  var button = $(event.relatedTarget) // Button that triggered the modal
+    	  var code = button.data('code')
+    	  var nom = button.data('nom')
+    	  var prenom = button.data('prenom')
+    	  var email = button.data('email')
+    	  var telephone = button.data('telephone')
+    	  var cin = button.data('cin')
+    	  var ville = button.data('ville')// Extract info from data-* attributes
+    	  // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+    	  // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+    	  var modal = $(this)
+    	  modal.find('.modal-title').text('Modifier agent d\'Id ' + code)
+    	  modal.find('#code').val(code)
+    	  modal.find('#nom').val(nom)
+    	  modal.find('#prenom').val(prenom)
+    	  modal.find('#email').val(email)
+    	  modal.find('#telephone').val(telephone)
+    	  modal.find('#cin').val(cin)
+    	  modal.find('#ville').val(ville)
+    	})
+    </script>
 </body>
 </html>

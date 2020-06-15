@@ -8,13 +8,14 @@
 
 body {
   /*display: flex;*/
+  background-color: #303032;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background: white;
 }
 
 .shape__container {
+	
   position: relative;
   height: 550px;
   width: 400px;

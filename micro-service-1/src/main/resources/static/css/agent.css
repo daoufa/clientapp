@@ -9,10 +9,11 @@ body {
 }
 
 .agence{
-	margin:20px;
+	margin-top:80px;
 	display:flex;
-	justify-content:center;
+	justify-content:space-around;
 }
+
 
 .cta {
   padding: 9px 25px;
@@ -21,6 +22,37 @@ body {
   border-radius: 50px;
   cursor: pointer;
   transition: background-color 0.3s ease 0s;
+  min-width:80px;
+}
+
+a:link {
+ text-decoration: none;
+}
+
+.modal-title{
+	margin-left: 150px;
+	color:white;
+}
+#content{
+	background-color: #24252a;
+	-webkit-box-shadow: 2px 0px 12px 3px rgba(0,0,0,1);
+  -moz-box-shadow: 2px 0px 12px 3px rgba(0,0,0,1);
+  box-shadow: 2px 0px 12px 3px rgba(0,0,0,1);
+}
+
+.form-add label {
+	font-size: 18px;
+  font-weight: 300;
+  line-height: 30px;
+  letter-spacing: 0.5px;
+	color:#eee;
+	display:flex;
+	justify-content:center;
+}
+
+.form-add input {
+  background-color: rgba(50,50,50,0.8);
+  color:#fff;
 }
 
 main {
@@ -30,6 +62,25 @@ main {
   padding: 60px 0;
 }
 
+.edit{
+	margin:5px;
+	display:flex;
+	justify-content:flex-end;
+}
+
+.edit a{
+	color:black;
+}
+
+.cta-edit {
+  padding: 3px 12px;
+  margin-left:10px;
+  background-color: rgba(0, 136, 169, 1);
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: background-color 0.3s ease 0s;
+}
 .card-title{
   font-family: "Open Sans", sans-serif;
   font-size: 18px;

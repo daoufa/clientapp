@@ -26,11 +26,11 @@
 	<div class="controle">
 		<a class="cta" data-toggle="modal" data-target="#creerAgence">Creer une Agence</a>
 	</div>
-	<div class="controle">
+	<div class="controle" th:if="${!isModifier}">
 		<a class="cta" th:href="@{/index(isModifier=true)}">Modifier les Agences</a>
 	</div>
 	<div class="controle" th:if="${isModifier}">
-		<a class="cta" th:href="@{/index(isModifier=false)}">Annuler</a>
+		<a class="cta bg-success" th:href="@{/index(isModifier=false)}">Annuler</a>
 	</div>
 	
 	<!-- Modal -->
@@ -47,16 +47,16 @@
 		      <div class="modal-body">
 	        	<div class="container" >
 		        	<div class="form-group form-add" >
-		        		<label for="exampleInputPassword1" style="">Password</label>
-	                   	<input type="text" class="form-control" placeholder="nom *"th:field="*{nom}" />
+		        		<label for="nom" >nom</label>
+	                   	<input type="text" id="nom" class="form-control" placeholder="nom *"th:field="*{nom}" />
 	               	</div>
 	               	<div class="form-group form-add">
-		        		<label for="exampleInputPassword1">adresse</label>
-	                   	<input type="text" class="form-control" placeholder="adresse *" th:field="*{adresse}"/>
+		        		<label for="adresse">adresse</label>
+	                   	<input type="text" id="adresse" class="form-control" placeholder="adresse *" th:field="*{adresse}"/>
 	               	</div>
 	               	<div class="form-group form-add">
-		        		<label for="exampleInputPassword1">Ville</label>
-	                   	<input type="text" class="form-control" placeholder="ville *" th:field="*{ville}"/>
+		        		<label for="ville">Ville</label>
+	                   	<input type="text" id="ville" class="form-control" placeholder="ville *" th:field="*{ville}"/>
 	               	</div>
 	             </div>
 		      </div>
