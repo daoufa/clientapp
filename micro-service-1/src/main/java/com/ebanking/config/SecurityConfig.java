@@ -42,7 +42,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		.antMatchers(HttpMethod.GET,"/clients/**/**","/compteEpargnes/**",
 				"/compteCourants/**","/comptes/**/**","/compteEpargnes/**")
 		
-		.access("hasRole('ROLE_CLIENT')")
+		.access("hasAnyRole('ROLE_CLIENT','ROLE_AGENT','ROLE_ADMIN')")
 		
 		//les roles agents
 		.antMatchers(HttpMethod.POST,"/clients/**/**","/compteEpargnes/**","/compteCourants/**","/comptes/**","/compteEpargnes/**")
