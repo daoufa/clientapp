@@ -79,11 +79,12 @@ public class MicroService1Application implements CommandLineRunner {
 		repositoryRestConfiguration.exposeIdsFor(Compte.class);
 		repositoryRestConfiguration.exposeIdsFor(CompteCourant.class);
 		repositoryRestConfiguration.exposeIdsFor(CompteEpargne.class);
+		repositoryRestConfiguration.exposeIdsFor(Agent.class);
 
 		repositoryRestConfiguration.exposeIdsFor(RechargeTelephone.class);
 
 		repositoryRestConfiguration.exposeIdsFor(Virement.class);
-		/*adminRepository.save(new Admin("dafali", "youssef", "heisenberg", "123456"));
+		adminRepository.save(new Admin("dafali", "youssef", "heisenberg", "123456"));
 		BCryptPasswordEncoder bcp = new BCryptPasswordEncoder();
 
 		Client client = new Client("Elatrouz", "ahmed", "elatrouz@email.com", "0698785645", "homme", false,
@@ -101,28 +102,24 @@ public class MicroService1Application implements CommandLineRunner {
 		clientRepository.save(client4);
 		compteRepository.save(new CompteEpargne(new Date(), 100.0, client, 0.1));
 		compteRepository.save(new CompteCourant(new Date(), 15000.0, client, 0.3));
-
 		Compte c1 = compteRepository.findById(2l).orElse(null);
 		Compte c2 = compteRepository.findById(1l).orElse(null);
-		Virement virement = new Virement(c1, c2, 3500.00);
-		virementRepository.save(virement);
-
 		compteRepository.save(new CompteEpargne(new Date(), 150.0, client2, 0.9));
 		compteRepository.save(new CompteCourant(new Date(), 20000.0, client2, 0.5));
-
 		Compte compte = iClientService.consulterCompte(1l);
 		Compte compte2 = iClientService.consulterCompte(2l);
-		// System.out.println(compte);
+		
 		//iClientService.virement(compte.getNumCompte(), compte2.getNumCompte(), 12.0);
 		//iClientService.rechargeTelephone(compte.getNumCompte(), "0632302864", 20.0);
 
-		Agence agence = agenceRepository.save(new Agence("ebank", "rue M6"));
-		Agence agence2 = agenceRepository.save(new Agence("ebank2", "rue M5"));
-		Agent ag1 = agentRepository.save(new Agent("jane", "patric", agence));
-		Agent ag2 = agentRepository.save(new Agent("tribiani", "joe", agence2));
-		Agent ag3 = agentRepository.save(new Agent("bing", "chandler", agence2));
+		Agence agence = agenceRepository.save(new Agence("ebank", "rue M6","Casa"));
+		Agence agence2 = agenceRepository.save(new Agence("ebank2", "rue M5","Marrakech"));
+		Agence agence3 = agenceRepository.save(new Agence("ebank3", "rue salam","tanger"));
+		agentRepository.save(new Agent("Anik", "Habib", "maroc", "casa", "065987456", "habib@email.com", "ff5689", agence));
+		agentRepository.save(new Agent("Tribiani", "Joe", "maroc", "tanger", "060606060", "joe@email.com", "gg546", agence));
+		agentRepository.save(new Agent("Bing", "cChandler", "maroc", "marrakech", "065987456", "bing@email.com", "hh5445", agence2));
 
-		iAdminService.changeAgence(agence, ag3);
+		//iAdminService.changeAgence(agence, ag3);
 		
 		
 
@@ -133,7 +130,7 @@ public class MicroService1Application implements CommandLineRunner {
 		
 		iUserService.addRoleToUser("admin", "ADMIN");
 		iUserService.addRoleToUser("admin", "CLIENT");
-		iUserService.addRoleToUser("client1", "CLIENT");*/
+		iUserService.addRoleToUser("client1", "CLIENT");
 		
 
 	}
