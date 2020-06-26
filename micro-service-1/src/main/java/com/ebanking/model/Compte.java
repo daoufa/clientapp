@@ -98,13 +98,13 @@ public abstract class Compte  {
 		if(type=="ce") { isEpargne=true;}
 		else {isEpargne=false;}
 	}
-	
+/*	
 	@JsonGetter
 	public String clientNom() {
 		return this.client.getNom()+" "+this.client.getPrenom();
 	}
 	
-
+*/
 	
 	
 

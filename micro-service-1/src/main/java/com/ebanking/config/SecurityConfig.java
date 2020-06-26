@@ -34,18 +34,33 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.csrf().disable();
-		/*.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+		http.csrf().disable()
+		.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 		.and()
 		.authorizeRequests()
-		.antMatchers("/login/**")
-		.permitAll()
-		.anyRequest().authenticated()
+		
+		.antMatchers(HttpMethod.GET,"/clients/**/**","/compteEpargnes/**",
+				"/compteCourants/**","/comptes/**/**","/compteEpargnes/**")
+		
+		.access("hasRole('ROLE_CLIENT')")
+		
+		//les roles agents
+		.antMatchers(HttpMethod.POST,"/clients/**/**","/compteEpargnes/**","/compteCourants/**","/comptes/**","/compteEpargnes/**")
+		.access("hasRole('ROLE_AGENT')")
+		
+		//les roles client en lecture
+		
+		
+		//les roles admin ou client
+		.antMatchers("/virements/**","/saveVirements/**",
+						"/rechargeTelephones/**","/saveRecharge/**")
+		.access("hasAnyRole('ROLE_ADMIN','ROLE_CLIENT')")
+		
 		.and()
 		.addFilter(new JWTAuthenticationFilter(authenticationManager()))
 		.addFilterBefore(new JWTAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
-*/
-		http.authorizeRequests().anyRequest().permitAll();
+
+		//http.authorizeRequests().anyRequest().permitAll();
 	}
 	
 	@Bean
