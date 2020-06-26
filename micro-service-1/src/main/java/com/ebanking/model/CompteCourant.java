@@ -5,6 +5,9 @@ import java.util.Date;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.ebanking.config.GlobalParam;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 import lombok.AllArgsConstructor;

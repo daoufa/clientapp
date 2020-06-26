@@ -9,10 +9,12 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import com.ebanking.config.GlobalParam;
 import com.ebanking.model.Admin;
 import com.ebanking.model.Agence;
 import com.ebanking.model.Agent;
@@ -39,6 +41,7 @@ import com.ebanking.service.IUserService;
 
 @SpringBootApplication
 @EnableAutoConfiguration
+@EnableConfigurationProperties(GlobalParam.class)
 public class MicroService1Application implements CommandLineRunner {
 
 	@Autowired
