@@ -37,6 +37,7 @@ public class ClientServiceImpl implements IClientService {
 	
 	@Override
 	public Compte consulterCompte(Long numCpte) {
+		System.out.println(numCpte);
 		Compte cpt=compteRepository.findById(numCpte).orElse(null);
 		if(cpt==null) throw new RuntimeException("Compte introuvable");
 		cpt.getClient().setComptes(null);;

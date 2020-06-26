@@ -22,7 +22,6 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-@Data
 @DiscriminatorValue("CE")
 @JsonTypeName("ce")
 public class CompteEpargne extends Compte  {

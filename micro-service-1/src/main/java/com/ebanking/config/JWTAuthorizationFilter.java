@@ -30,7 +30,7 @@ public class JWTAuthorizationFilter extends OncePerRequestFilter {
 				"Origin, Accept, X-Requested-With,"
 		+" Content-Type, Access-Control-Request-Method, Access-Control-Request"+
 		"-Headers,Authorization");
-		response.addHeader ("Access-Control-Expose-Headers", "Access-Control-Allow-Origin, Access-Control-Allow-Credentials, Authorization");
+		response.addHeader ("Access-Control-Expose-Headers", "Access-Control-Allow-Origin, Access-Control-Allow-Credentials, Authorization, Payload");
 		
 		String jwt=request.getHeader(SecurityConstants.HEADER_STRING);
 		
