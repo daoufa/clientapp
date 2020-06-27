@@ -34,7 +34,7 @@ public class JWTAuthorizationFilter extends OncePerRequestFilter {
 		
 		String jwt=request.getHeader(SecurityConstants.HEADER_STRING);
 		
-		System.out.println(jwt);
+		
 		if(request.getMethod().equals("OPTIONS")) {
 			response.setStatus(HttpServletResponse.SC_OK);
 		}else {

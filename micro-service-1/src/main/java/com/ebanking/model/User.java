@@ -21,7 +21,10 @@ import java.util.List;
 @Table(name = "users")
 public class User {
 
-    @Id
+	@Id
+    @Column(name = "code")
+    private Long code;
+	
     @NotEmpty(message = "*Please provide a username")
     @Column(length = 50)
     private String username;
@@ -31,6 +34,9 @@ public class User {
     @Column(length = 100)
     private String password;
     
+    @OneToOne
+    @MapsId
+    private Client client;
     
     private Boolean active;
     
@@ -48,6 +54,10 @@ public class User {
 		roles.add(role1);
 
 	}
+    
+    public long getCode() {
+    	return this.code;
+    }
 
 	public String getUsername() {
 		return username;

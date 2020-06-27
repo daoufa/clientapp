@@ -12,6 +12,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -48,6 +49,9 @@ public class Client implements Serializable{
 	private String ville;
 	private String identitePhoto;
 	private String passportPhoto;
+	
+	@OneToOne(mappedBy = "client", cascade = CascadeType.ALL)
+	private User userAccount;
 	
 	
 	@JsonBackReference
