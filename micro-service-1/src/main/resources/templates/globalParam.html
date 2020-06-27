@@ -17,14 +17,16 @@
   crossorigin="anonymous"
 />
 <title>Insert title here</title>
-<link rel="stylesheet" href="css/agence.css">
+<link rel="stylesheet" href="css/globalParam.css">
 
 </head>
 <body>
 
 	<div th:replace="nav"></div>
 	
-	<div class="container">
+	<div class="shape__container text">
+      	<div class="shape">
+
 		<form th:action="@{/setGlobalParam}" method="post" ><!-- th:object="${globalParam}"  -->
 		  <div class="form-group row">
 		    <label for="decouvert" class="col-sm-2 col-form-label">Decouvert</label>
@@ -42,7 +44,7 @@
 		</form>
 	</div>
 	
-	
+	</div>
 	<script
       src="http://code.jquery.com/jquery-3.3.1.min.js"
       integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="

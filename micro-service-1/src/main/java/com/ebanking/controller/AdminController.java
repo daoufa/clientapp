@@ -16,6 +16,7 @@ import com.ebanking.repository.AgenceRepository;
 import com.ebanking.repository.UserRepository;
 
 @Controller
+
 public class AdminController {
 	@Autowired
 	private AgenceRepository agenceRepository;
@@ -42,7 +43,6 @@ public class AdminController {
 
 	@GetMapping("/index")
 	public String index(Model model, @RequestParam(name = "isModifier", defaultValue = "false") boolean isModifier) {
-		System.out.println("decouvert" + new GlobalParam().getDecouvert());
 		List<Agence> agences = agenceRepository.findAll();
 		model.addAttribute("agences", agences);
 		model.addAttribute("isModifier", isModifier);

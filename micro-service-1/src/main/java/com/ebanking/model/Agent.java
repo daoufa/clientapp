@@ -14,12 +14,11 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 @Entity
-@ToString
-@AllArgsConstructor
+
 @Data
+@AllArgsConstructor
 @NoArgsConstructor
 public class Agent implements Serializable {
 
@@ -48,7 +47,11 @@ public class Agent implements Serializable {
 		this.telephone = telephone;
 		this.cin = cin;
 		this.pays = pays;
-		this.ville =ville;
+		this.ville = ville;
 	}
 
+	@Override
+	public String toString() {
+		return "agent" + this.getNom();
+	}
 }

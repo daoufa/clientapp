@@ -16,7 +16,7 @@ body {
 
 .shape__container {
   position: relative;
-  height: 550px;
+  height: 980px;
   width: 400px;
   margin-left:300px;
   margin-top:100px;
@@ -28,8 +28,9 @@ body {
   flex-direction: column;
   background: #4787c9;
   width: 700px;
-  height: 600px;
+  height: 980px;
   border-radius: 30px;
+  margin-bottom: 50px;
   /*transform: skewX(-5deg) skewY(-5deg); /*Shorthand: skew(-5deg, -5deg);*/
   box-shadow: 0px 5px 14px rgba(9, 33, 58, 0.1);
   -webkit-box-shadow: 2px 0px 12px 1px rgba(217,214,217,0.74);
@@ -48,6 +49,7 @@ body {
   padding-left: 50px;
   margin-top: 10%;
   width:430px;
+  height: 50px;
   color: white;
 }
 
@@ -63,18 +65,38 @@ body {
 .text {
   font-family: "Hind", sans-serif;
   font-size: 18px;
+  width: auto;
   font-weight: 300;
   line-height: 30px;
   letter-spacing: 0.5px;
-  color: #f4f4f4;
   padding: 40px 30px;
-  /*transform: skewX(5deg) skewY(5deg); /*Shorthand: skew(5deg, 5deg);*/
+  margin-bottom: 10px;
+  max-height: 25px;
 }
 
 .text .logo {
   margin-bottom: 10px;
   max-height: 25px;
 }
+
+
+
+.card li {
+  background-color: rgba(50,50,50,0.3);
+  display: flex;
+  
+}
+.card h3 {
+  min-width: 200px;
+  font-size: 20px;
+}
+
+.card span[id="description"] {
+  height: 200px;
+  overflow: auto;
+}
+
+
 /*
 .shape__shadow {
   position: absolute;

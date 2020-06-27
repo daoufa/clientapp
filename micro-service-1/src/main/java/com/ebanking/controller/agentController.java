@@ -83,24 +83,24 @@ public class agentController {
 		return redirect;
 	}
 
-	@GetMapping("/editAgent")
-	public String editAgent(Model model, @RequestParam(name = "idagence") Long idAgence) {
+//	@GetMapping("/editAgent")
+//	public String editAgent(Model model, @RequestParam(name = "idagence") Long idAgence) {
+//
+//		Agence agence = agenceRepository.findById(idAgence).get();
+//
+//		model.addAttribute("editAgence", agence);
+//
+//		return "agence";
+//	}
 
-		Agence agence = agenceRepository.findById(idAgence).get();
-
-		model.addAttribute("editAgence", agence);
-
-		return "agence";
-	}
-
-	@GetMapping("/saveAgent")
-	public RedirectView saveAgent(Model model, @RequestParam(name = "editAgence") Agence editAgence) {
-
-		Agence agence = agenceRepository.findById(editAgence.getId()).get();
-
-		model.addAttribute("editAgence", agence);
-
-		return new RedirectView("index");
-	}
+//	@GetMapping("/saveAgent")
+//	public RedirectView saveAgent(Model model, @RequestParam(name = "editAgence") Agence editAgence) {
+//
+//		Agence agence = agenceRepository.findById(editAgence.getId()).get();
+//
+//		model.addAttribute("editAgence", agence);
+//
+//		return new RedirectView("index");
+//	}
 
 }
