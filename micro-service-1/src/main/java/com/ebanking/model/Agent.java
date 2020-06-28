@@ -2,14 +2,17 @@ package com.ebanking.model;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -36,6 +39,10 @@ public class Agent implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "CODE_AGENCE")
 	private Agence agence;
+	
+	@OneToOne(mappedBy = "agent", cascade = CascadeType.ALL)
+	@JsonIgnore
+	private User userAccount;
 
 	public Agent(String nom, String prenom, String pays, String ville, String telephone, String email, String cin,
 			Agence agence) {

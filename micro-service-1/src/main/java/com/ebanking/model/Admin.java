@@ -1,9 +1,13 @@
 package com.ebanking.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -24,6 +28,9 @@ public class Admin {
 	private String username;
 	private String password;
 	
+	@OneToOne(mappedBy = "admin", cascade = CascadeType.ALL)
+	@JsonIgnore
+	private User userAccount;
 	
 	public Admin(String nom, String prenom, String username, String password) {
 		super();

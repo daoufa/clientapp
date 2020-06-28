@@ -5,7 +5,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import javax.persistence.ManyToMany;
 import javax.validation.constraints.NotEmpty;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -21,10 +20,8 @@ import java.util.List;
 @Table(name = "users")
 public class User {
 
-	@Id
-    @Column(name = "code")
-    private Long code;
 	
+	@Id
     @NotEmpty(message = "*Please provide a username")
     @Column(length = 50)
     private String username;
@@ -35,8 +32,13 @@ public class User {
     private String password;
     
     @OneToOne
-    @MapsId
     private Client client;
+    
+    @OneToOne
+    private Agent agent;
+    
+    @OneToOne
+    private Admin admin;
     
     private Boolean active;
     
@@ -55,8 +57,20 @@ public class User {
 
 	}
     
-    public long getCode() {
-    	return this.code;
+    public Long getClientCode() {
+    	if (this.client!=null)
+    	return this.client.getCode();
+    	return null;
+    }
+    public Long getAdminId() {
+    	if (this.admin!=null)
+    	return this.admin.getId();
+    	return null;
+    }
+    public Long getAgentCode() {
+    	if (this.agent!=null)
+    	return this.agent.getCode();
+    	return null;
     }
 
 	public String getUsername() {
@@ -82,7 +96,7 @@ public class User {
 	public void setActive(Boolean active) {
 		this.active = active;
 	}
-
+	//@JsonIgnore
 	public List<Role> getRoles() {
 		return roles;
 	}

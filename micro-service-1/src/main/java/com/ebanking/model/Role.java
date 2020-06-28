@@ -8,6 +8,8 @@ import java.util.List;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonGetter;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -21,4 +23,9 @@ public class Role {
     
     @ManyToMany(mappedBy = "roles")
     private List<User> users;
+    
+    public List<User> getUsers(){
+    	return null;
+    }
+    
 }

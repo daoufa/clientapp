@@ -15,6 +15,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.AllArgsConstructor;
@@ -51,6 +52,7 @@ public class Client implements Serializable{
 	private String passportPhoto;
 	
 	@OneToOne(mappedBy = "client", cascade = CascadeType.ALL)
+	@JsonIgnore
 	private User userAccount;
 	
 	
@@ -82,6 +84,10 @@ public class Client implements Serializable{
 		
 		SimpleDateFormat sdf=new SimpleDateFormat("dd/MM/yyyy");
 		this.dateNaissance =new Date(sdf.format(new Date(dateNaissance)));
+	}
+	
+	public User getUserAccount() {
+		return null;
 	}
 }
 
