@@ -31,13 +31,16 @@ public class User {
     @Column(length = 100)
     private String password;
     
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "client_code", referencedColumnName = "code")
     private Client client;
     
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "agent_code", referencedColumnName = "code")
     private Agent agent;
     
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "admin_id", referencedColumnName = "id")
     private Admin admin;
     
     private Boolean active;

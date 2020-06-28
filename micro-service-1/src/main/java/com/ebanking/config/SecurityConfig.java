@@ -42,7 +42,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.access("hasAnyRole('ROLE_CLIENT','ROLE_AGENT','ROLE_ADMIN')")
 
 				// les roles agents
-				.antMatchers(HttpMethod.POST, "/clients/**/**", "/compteEpargnes/**", "/compteCourants/**",
+				.antMatchers(HttpMethod.POST,"/saveClient/**","/clients/**/**", "/compteEpargnes/**", "/compteCourants/**",
+						"/comptes/**", "/compteEpargnes/**")
+				.access("hasRole('ROLE_AGENT')")
+				.antMatchers(HttpMethod.DELETE, "/clients", "/compteEpargnes/**", "/compteCourants/**",
+						"/comptes/**", "/compteEpargnes/**")
+				.access("hasRole('ROLE_AGENT','ROLE_ADMIN','ROLE_CLIENT')")
+				.antMatchers(HttpMethod.PUT, "/clients/**/**", "/compteEpargnes/**", "/compteCourants/**",
 						"/comptes/**", "/compteEpargnes/**")
 				.access("hasRole('ROLE_AGENT')")
 
