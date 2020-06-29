@@ -15,7 +15,6 @@ import com.ebanking.model.Compte;
 import com.ebanking.model.CompteCourant;
 import com.ebanking.model.CompteEpargne;
 import com.ebanking.model.RechargeTelephone;
-import com.ebanking.model.User;
 import com.ebanking.model.Virement;
 import com.ebanking.repository.AdminRepository;
 import com.ebanking.repository.AgenceRepository;
@@ -121,16 +120,16 @@ public class MicroService1Application implements CommandLineRunner {
 		 * 
 		 * // iAdminService.changeAgence(agence, ag3);
 		 * 
-		 */ 
-		//  iUserService.saveUser(new User("agent1", "123456",null, agentRepository.findById(1l).orElse(null), null, false, null));
-		 // iUserService.saveUser(new User("admin", "123456", true, null));
-		  //iUserService.saveRole(new Role("ADMIN", null)); iUserService.saveRole(new
-		  //Role("CLIENT", null));
-		  
-		  iUserService.addRoleToUser("agent1", "CLIENT");
-		  //iUserService.addRoleToUser("admin", "CLIENT");
-		  //iUserService.addRoleToUser("client1", "CLIENT");
-		 
+		 */
+		// iUserService.saveUser(new User("agent1", "123456",null,
+		// agentRepository.findById(1l).orElse(null), null, false, null));
+		// iUserService.saveUser(new User("admin", "123456", true, null));
+		// iUserService.saveRole(new Role("ADMIN", null)); iUserService.saveRole(new
+		// Role("CLIENT", null));
+
+//		iUserService.addRoleToUser("agent1", "CLIENT");
+		// iUserService.addRoleToUser("admin", "CLIENT");
+		// iUserService.addRoleToUser("client1", "CLIENT");
 
 	}
 

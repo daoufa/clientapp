@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.view.RedirectView;
 
+import com.ebanking.config.Authentication;
 import com.ebanking.model.Agence;
 import com.ebanking.repository.AgenceRepository;
 
@@ -19,61 +20,80 @@ public class AgenceController {
 	@Autowired
 	private AgenceRepository agenceRepository;
 
+	@Autowired
+	private Authentication authenticated;
+
 	@GetMapping("/agence")
 	public String agence(Model model) {
-
-		List<Agence> agences = agenceRepository.findAll();
-		model.addAttribute("agences", agences);
-		model.addAttribute("nvAgence", new Agence());
-		return "agence";
+		if (authenticated.isAuthenticated() == true) {
+			List<Agence> agences = agenceRepository.findAll();
+			model.addAttribute("agences", agences);
+			model.addAttribute("nvAgence", new Agence());
+			return "agence";
+		} else {
+			return "login";
+		}
 	}
 
 	@PostMapping("/creerAgence")
 	public RedirectView creerAgence(Model model, @ModelAttribute("nvAgence") Agence ag,
 			@RequestParam(name = "idagence", defaultValue = "0") Long idAgence) {
-		if (idAgence != null && idAgence != 0) {
-			Agence agence = agenceRepository.findById(idAgence).get();
-			agence.setId(idAgence);
-			agence.setVille(ag.getVille());
-			agence.setAdresse(ag.getAdresse());
-			agence.setNom(ag.getNom());
-			agenceRepository.save(agence);
+		if (authenticated.isAuthenticated() == true) {
+			if (idAgence != null && idAgence != 0) {
+				Agence agence = agenceRepository.findById(idAgence).get();
+				agence.setId(idAgence);
+				agence.setVille(ag.getVille());
+				agence.setAdresse(ag.getAdresse());
+				agence.setNom(ag.getNom());
+				agenceRepository.save(agence);
+			} else {
+				agenceRepository.save(ag);
+			}
+			return new RedirectView("/index");
 		} else {
-			agenceRepository.save(ag);
+			return new RedirectView("login");
 		}
-		return new RedirectView("/index");
+
 	}
 
 	@GetMapping("/deletAgence")
 	public RedirectView deletAgence(Model model, @RequestParam(name = "idagence") Long idAgence) {
+		if (authenticated.isAuthenticated() == true) {
+			Agence agence = agenceRepository.findById(idAgence).get();
+			agenceRepository.delete(agence);
 
-		Agence agence = agenceRepository.findById(idAgence).get();
-		agenceRepository.delete(agence);
+			RedirectView redirect = new RedirectView("index");
+			redirect.addStaticAttribute("isModifier", true);
+			return redirect;
+		} else {
+			return new RedirectView("login");
+		}
 
-		RedirectView redirect = new RedirectView("index");
-		redirect.addStaticAttribute("isModifier", true);
-		return redirect;
 	}
 
 	@GetMapping("/signalerAgence")
 	public RedirectView signalerAgence(Model model, @RequestParam(name = "idagence") Long idAgence) {
-
 		Agence agence = agenceRepository.findById(idAgence).get();
 
 		/* add idAgence to agence already has a flag */
 		RedirectView redirect = new RedirectView("index");
 		redirect.addStaticAttribute("isModifier", true);
 		return redirect;
+
 	}
 
 	@GetMapping("/editAgence")
 	public String editAgence(Model model, @RequestParam(name = "idagence") Long idAgence) {
+		if (authenticated.isAuthenticated()) {
+			Agence agence = agenceRepository.findById(idAgence).get();
 
-		Agence agence = agenceRepository.findById(idAgence).get();
+			model.addAttribute("editAgence", agence);
 
-		model.addAttribute("editAgence", agence);
+			return "agence";
+		} else {
+			return "login";
+		}
 
-		return "agence";
 	}
 
 //	@GetMapping("/saveAgence")

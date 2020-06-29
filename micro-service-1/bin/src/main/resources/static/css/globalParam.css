@@ -1,0 +1,50 @@
+@import url("https://fonts.googleapis.com/css?family=Hind:300&display=swap");
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: rgb(0,0,0);
+  background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(187,187,187,1) 100%);
+}
+
+.shape__container {
+  position: relative;
+  height: 980px;
+  width: 400px;
+  margin:300px;
+  margin-top:100px;
+}
+
+.shape {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  width: 700px;
+  border-radius: 30px;
+  margin-bottom: 50px;
+  padding:40px;
+  -webkit-box-shadow: 2px 0px 12px 1px rgba(217,214,217,0.74);
+  -moz-box-shadow: 2px 0px 12px 1px rgba(217,214,217,0.74);
+  box-shadow: 2px 0px 12px 1px rgba(217,214,217,0.74);
+}
+
+
+.text {
+  font-family: "Hind", sans-serif;
+  font-size: 18px;
+  width: auto;
+  font-weight: bold;
+  line-height: 30px;
+  letter-spacing: 0.5px;
+  padding: 40px 30px;
+  margin-bottom: 10px;
+  max-height: 25px;
+  color:#ddd;
+}

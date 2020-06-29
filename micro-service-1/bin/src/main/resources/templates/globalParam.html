@@ -16,40 +16,35 @@
   integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
   crossorigin="anonymous"
 />
-<title>e-banking</title>
-<link rel="stylesheet" href="css/profile.css">
+<title>Insert title here</title>
+<link rel="stylesheet" href="css/globalParam.css">
 
 </head>
 <body>
 
 	<div th:replace="nav"></div>
 	
-	<!-- <div id="main"> -->
-	<div class="shape__container">
-      <div class="shape">
-        <div class="customer__picture">
-        <h3 id="name"><span th:text="${admin.nom}"/> <span th:text="${admin.prenom}"/></h3>
-          <img
-            src="imgs/entrepreneur2.jpg"
-          />
-        </div>
-        <div class="text">
-	          <div class="card">
-				  <ul class="list-group list-group-flush" >
-				    <li class="list-group-item" ><h3>id :</h3><span th:text="${admin.id}"/></li>
-				    <li class="list-group-item" ><h3>nom :</h3> <span th:text="${admin.nom}"/></li></li>
-				    <li class="list-group-item" ><h3>prenom :</h3> <span th:text="${admin.prenom}"/></li>
-				    <li class="list-group-item" ><h3>username :</h3> <span >admin</span></li>
-				    <li class="list-group-item" ><h3>password :</h3> <span>123456</span></li>
-				  </ul>
-			   </div>
-	    	</div>
+	<div class="shape__container text">
+      	<div class="shape">
 
-      </div>
-    
-    </div>
+		<form th:action="@{/setGlobalParam}" method="post" ><!-- th:object="${globalParam}"  -->
+		  <div class="form-group row">
+		    <label for="decouvert" class="col-sm-2 col-form-label">Decouvert</label>
+		    <div class="col-sm-10">
+		      <input type="text" class="form-control" id="decouvert" placeholder="decouvert" name="decouvert" th:value="${decouvert}"><!-- th:field="*{decouvert}" -->
+		    </div>
+		  </div>
+		  <div class="form-group row">
+		    <label for="tauxInterets" class="col-sm-2 col-form-label">tauxInterets</label>
+		    <div class="col-sm-10">
+		      <input type="text" class="form-control" id="tauxInterets" placeholder="tauxInterets" name="tauxInterets" th:value="${tauxInterets}"><!-- th:field="*{tauxInterets}" -->
+		    </div>
+		  </div>
+		  <button type="submit" class="btn btn-primary">Save changes</button>
+		</form>
+	</div>
 	
-	
+	</div>
 	<script
       src="http://code.jquery.com/jquery-3.3.1.min.js"
       integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
