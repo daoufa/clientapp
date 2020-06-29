@@ -21,6 +21,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 
+import com.ebanking.config.Authentication;
 import com.ebanking.config.GlobalParam;
 import com.ebanking.model.Agence;
 import com.ebanking.repository.AgenceRepository;
@@ -34,16 +35,20 @@ public class AdminControllerTest {
 	@Autowired
 	private GlobalParam globalParam;
 	@Autowired
+	private Authentication authenticated;
+	@Autowired
 	private MockMvc mockMvc;
 
 	@Test
 	public void homeRedirectTest() throws Exception {
+		authenticated.setAuthenticated(true);
 		mockMvc.perform(get("/")).andExpect(status().is3xxRedirection()).andExpect(redirectedUrl("/index"));
 	}
 
 	@Test
 	@Transactional
 	public void indexTest() throws Exception {
+		authenticated.setAuthenticated(true);
 		List<Agence> agences = agenceRepository.findAll();
 		mockMvc.perform(get("/index").param("isModifier", "false"))
 				.andExpect(model().attribute("agences", equalTo(agences)))
@@ -55,6 +60,7 @@ public class AdminControllerTest {
 
 	@Test
 	public void globalParamTest() throws Exception {
+		authenticated.setAuthenticated(true);
 		mockMvc.perform(get("/globalParam"))
 				.andExpect(model().attribute("tauxInterets", equalTo(globalParam.getTauxInterets())))
 				.andExpect(model().attribute("decouvert", equalTo(globalParam.getDecouvert())))
@@ -64,6 +70,7 @@ public class AdminControllerTest {
 
 	@Test
 	public void setGlobalParamTest() throws Exception {
+		authenticated.setAuthenticated(true);
 		mockMvc.perform(post("/setGlobalParam").param("tauxInterets", "1.5").param("decouvert", "2.5"))
 				.andExpect(status().is3xxRedirection()).andExpect(redirectedUrl("index"));
 
@@ -72,6 +79,7 @@ public class AdminControllerTest {
 
 	@Test
 	public void profileTest() throws Exception {
+		authenticated.setAuthenticated(true);
 		mockMvc.perform(get("/profile")).andExpect(status().isOk()).andExpect(view().name("profile"));
 	}
 }

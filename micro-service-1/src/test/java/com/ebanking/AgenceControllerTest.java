@@ -25,6 +25,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 
+import com.ebanking.config.Authentication;
 import com.ebanking.model.Agence;
 import com.ebanking.repository.AgenceRepository;
 
@@ -34,6 +35,8 @@ import com.ebanking.repository.AgenceRepository;
 public class AgenceControllerTest {
 	@Autowired
 	private AgenceRepository agenceRepository;
+	@Autowired
+	private Authentication authenticated;
 	@LocalServerPort
 	int randomServerPort;
 	@Autowired
@@ -44,6 +47,7 @@ public class AgenceControllerTest {
 
 	@Test
 	public void creerAgenceTest() throws Exception {
+		authenticated.setAuthenticated(true);
 		final String baseUrl = "http://localhost:" + randomServerPort + "/creerAgence";
 		URI uri = new URI(baseUrl);
 		Agence a = new Agence("agenceTOP", "rue Casa", "casa");
@@ -61,6 +65,8 @@ public class AgenceControllerTest {
 
 	@Test
 	public void deletAgenceTest() throws Exception {
+
+		authenticated.setAuthenticated(true);
 		final String baseUrl = "http://localhost:" + randomServerPort + "/deletAgence";
 		URI uri = new URI(baseUrl);
 		Agence a = new Agence("agenceTOP", "rue Casa", "casa");
@@ -79,6 +85,7 @@ public class AgenceControllerTest {
 	@Test
 	@Transactional
 	public void editAgenceTest() throws Exception {
+		authenticated.setAuthenticated(true);
 		Agence a = new Agence("agenceTOP", "rue Casa", "casa");
 		a = agenceRepository.save(a);
 		mockMvc.perform(get("/editAgence").param("idagence", a.getId().toString()))

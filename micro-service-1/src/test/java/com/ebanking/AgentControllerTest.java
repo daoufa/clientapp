@@ -23,6 +23,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 
+import com.ebanking.config.Authentication;
 import com.ebanking.model.Agence;
 import com.ebanking.model.Agent;
 import com.ebanking.repository.AgenceRepository;
@@ -32,6 +33,8 @@ import com.ebanking.repository.AgentRepository;
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 @AutoConfigureMockMvc
 public class AgentControllerTest {
+	@Autowired
+	private Authentication authenticated;
 	@Autowired
 	private AgenceRepository agenceRepository;
 	@Autowired
@@ -47,6 +50,7 @@ public class AgentControllerTest {
 	@Test
 	public void agentViewTest() throws Exception {
 		Agence a = new Agence("agenceTOP", "rue Casa", "casa");
+		authenticated.setAuthenticated(true);
 		a = agenceRepository.save(a);
 		mockMvc.perform(get("/agent").param("idagence", a.getId().toString()).param("isModifier", "false"))
 				.andExpect(model().attribute("agence", equalTo(a)))
@@ -58,6 +62,7 @@ public class AgentControllerTest {
 
 	@Test
 	public void creerAgentTest() throws Exception {
+		authenticated.setAuthenticated(true);
 		Agent agent = new Agent("daoufa", "abderrahman", "maroc", "casa", "00636", "df@gmail", "ee", null);
 		Agence agence = new Agence("agenceTOP", "rue Casa", "casa");
 		agence = agenceRepository.save(agence);
@@ -77,6 +82,7 @@ public class AgentControllerTest {
 
 	@Test
 	public void deletAgentTest() throws Exception {
+		authenticated.setAuthenticated(true);
 		final String baseUrl = "http://localhost:" + randomServerPort + "/deletAgent";
 		URI uri = new URI(baseUrl);
 		Agent agent = new Agent("daoufa", "abderrahman", "maroc", "casa", "00636", "df@gmail", "ee", null);
