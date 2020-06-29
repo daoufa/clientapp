@@ -62,4 +62,9 @@ public class CompteRestController {
 
 	}
 
+	@GetMapping(value = "/globalParams")
+	public GlobalParam getGlobalParam() {
+		return globalParam;
+	}
+
 }
